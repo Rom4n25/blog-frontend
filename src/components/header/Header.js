@@ -1,15 +1,17 @@
 import StyledHeader from "../styles/Header";
 import userData from "../../services/UserData";
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 
 const Header = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   return (
     <StyledHeader>
       <div>
-        <button>Click me!</button>
+        <button onClick={() => removeCookie("accessToken")}>Log Out</button>
         <form
           onSubmit={(e) => {
             e.preventDefault();
