@@ -1,10 +1,12 @@
 import StyledMain from "../styles/StyledMain";
+import NewPost from "./NewPost";
 import PostContainer from "./PostContainer";
 
 const Main = () => {
   return (
     <StyledMain>
-      <PostContainer></PostContainer>
+      <NewPost />
+      <PostContainer />
     </StyledMain>
   );
 };

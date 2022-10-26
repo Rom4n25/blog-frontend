@@ -18,6 +18,7 @@ const PostContainer = () => {
       {posts.map((post) => (
         <Post
           key={post.id}
+          id={post.id}
           text={post.text}
           author={post.user.username}
           comments={post.comment}

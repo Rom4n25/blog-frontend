@@ -7,7 +7,18 @@ const postData = () => {
     return response;
   }
 
-  return { getAllPosts };
+  async function addPost(post) {
+    await fetch("/posts/add", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: post }),
+    }).catch();
+  }
+
+  return { getAllPosts, addPost };
 };
 
 export default postData;
