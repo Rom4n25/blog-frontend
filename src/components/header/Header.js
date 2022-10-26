@@ -1,4 +1,4 @@
-import StyledHeader from "../styles/Header";
+import StyledHeader from "../styles/StyledHeader";
 import { useCookies } from "react-cookie";
 
 const Header = () => {

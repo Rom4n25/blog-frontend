@@ -1,4 +1,4 @@
-import StyledPostContainer from "../styles/PostContainer";
+import StyledPostContainer from "../styles/StyledPostContainer";
 import Post from "./Post";
 import postData from "../../services/PostData";
 import { useEffect } from "react";
@@ -16,7 +16,12 @@ const PostContainer = () => {
   return (
     <StyledPostContainer>
       {posts.map((post) => (
-        <Post key={post.id} text={post.text} author={post.user.username}></Post>
+        <Post
+          key={post.id}
+          text={post.text}
+          author={post.user.username}
+          comments={post.comment}
+        ></Post>
       ))}
     </StyledPostContainer>
   );

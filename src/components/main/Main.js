@@ -1,4 +1,4 @@
-import StyledMain from "../styles/Main";
+import StyledMain from "../styles/StyledMain";
 import PostContainer from "./PostContainer";
 
 const Main = () => {
