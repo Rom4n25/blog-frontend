@@ -5,7 +5,6 @@ const StyledNewPost = styled.div`
   flex-direction: column;
   background: #3c6e71;
   width: 600px;
-  margin: 10px;
 `;
 
 export default StyledNewPost;

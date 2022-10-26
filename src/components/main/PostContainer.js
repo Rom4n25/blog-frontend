@@ -3,6 +3,7 @@ import Post from "./Post";
 import postData from "../../services/PostData";
 import { useEffect } from "react";
 import { useState } from "react";
+import NewPost from "./NewPost";
 
 const PostContainer = () => {
   const [posts, setPosts] = useState([]);
@@ -15,6 +16,7 @@ const PostContainer = () => {
 
   return (
     <StyledPostContainer>
+      <NewPost></NewPost>
       {posts.map((post) => (
         <Post
           key={post.id}

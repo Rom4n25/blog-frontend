@@ -6,7 +6,7 @@ const NewPost = () => {
   const [post, setPost] = useState("");
 
   const addPost = () => {
-    postData().addPost(post);
+    postData().addPost(post).then(window.location.reload(false));
   };
 
   return (
