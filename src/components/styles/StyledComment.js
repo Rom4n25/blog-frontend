@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
 const StyledComment = styled.div`
-  background: #00adb5;
-  height: 300px;
-  width: 600px;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: #3c4048;
+
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
 `;
 
 export default StyledComment;

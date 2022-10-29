@@ -5,6 +5,7 @@ const StyledTextArea = styled.textarea`
   color: #eaeaea;
   border-radius: 4px;
   padding: 5px;
+  resize: none;
 `;
 
 export default StyledTextArea;

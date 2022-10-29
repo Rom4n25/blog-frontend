@@ -12,3 +12,13 @@ div#root{
     color: #eaeaea;
     opacity: 0.95;
   }
+
+  textarea:focus { 
+    outline: none !important;
+    border-color:  #00aab386;
+    box-shadow: 0 0 10px #00aab370;
+  }
+
+  input:focus { 
+    outline: none !important;
+  }

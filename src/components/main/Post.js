@@ -2,7 +2,10 @@ import StyledPost from "../styles/StyledPost";
 import Comment from "./Comment";
 import { useState } from "react";
 import CommentData from "../../services/CommentData";
-import StyledButton from "../styles/StyledButton";
+import StyledCommentButton from "../styles/StyledCommentButton";
+import StyledPostAuthor from "../styles/StyledPostAuthor";
+import StyledPostText from "../styles/StyledPostText";
+import StyledCommentContainer from "../styles/StyledCommentContainer";
 
 const Post = ({ id, text, author }) => {
   const [showComments, setShowComments] = useState(false);
@@ -18,20 +21,26 @@ const Post = ({ id, text, author }) => {
   return (
     <>
       <StyledPost>
-        <div>{text}</div>
-        <div>{author}</div>
+        <StyledPostAuthor>@{author}</StyledPostAuthor>
+        <StyledPostText>{text}</StyledPostText>
+        <StyledCommentButton value={showComments} onClick={displayComments}>
+          show comments &#8628;
+        </StyledCommentButton>
       </StyledPost>
-      <StyledButton value={showComments} onClick={displayComments}>
-        Show comments
-      </StyledButton>
 
-      {showComments === true ? (
-        comments.map((comment) => (
-          <Comment key={comment.id} text={comment.text}></Comment>
-        ))
-      ) : (
-        <></>
-      )}
+      <StyledCommentContainer>
+        {showComments === true ? (
+          comments.map((comment) => (
+            <Comment
+              key={comment.id}
+              text={comment.text}
+              author={comment.user.username}
+            ></Comment>
+          ))
+        ) : (
+          <></>
+        )}
+      </StyledCommentContainer>
     </>
   );
 };

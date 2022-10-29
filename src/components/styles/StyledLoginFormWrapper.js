@@ -8,7 +8,7 @@ const StyledLoginFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  background-color: #303136;
+  background-color: #3c4048;
   opacity: 0.85;
   color: #eaeaea;
   padding: 30px;

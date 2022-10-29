@@ -20,8 +20,8 @@ const NewPost = () => {
           cols={60}
           placeholder="Say something..."
         ></StyledTextArea>
+        <StyledButton onClick={addPost}>Add Post</StyledButton>
       </StyledNewPost>
-      <StyledButton onClick={addPost}>Add Post</StyledButton>
     </>
   );
 };

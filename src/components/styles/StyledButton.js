@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   color: #eaeaea;
   cursor: pointer;
   padding: 8px;
+  font-size: 15px;
 `;
 
 export default StyledButton;
