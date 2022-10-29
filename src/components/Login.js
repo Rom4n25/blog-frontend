@@ -9,6 +9,7 @@ const Login = ({ setAuthentication }) => {
 
   return (
     <StyledLoginFormWrapper>
+      Login
       <StyledForm
         onSubmit={(e) => {
           e.preventDefault();
