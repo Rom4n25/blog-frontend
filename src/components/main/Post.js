@@ -6,10 +6,12 @@ import StyledCommentButton from "../styles/StyledCommentButton";
 import StyledPostAuthor from "../styles/StyledPostAuthor";
 import StyledPostText from "../styles/StyledPostText";
 import StyledCommentContainer from "../styles/StyledCommentContainer";
+import NewComment from "./NewComment";
 
 const Post = ({ id, text, author }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState([]);
 
   const displayComments = () => {
     CommentData()
@@ -18,10 +20,19 @@ const Post = ({ id, text, author }) => {
       .then(setShowComments(!showComments));
   };
 
+  const addComment = () => {
+    setNewComment(!newComment);
+  };
+
   return (
     <>
       <StyledPost>
-        <StyledPostAuthor>@{author}</StyledPostAuthor>
+        <StyledPostAuthor>
+          @{author}
+          <StyledCommentButton onClick={addComment}>
+            reply &#8631;
+          </StyledCommentButton>
+        </StyledPostAuthor>
         <StyledPostText>{text}</StyledPostText>
         <StyledCommentButton value={showComments} onClick={displayComments}>
           show comments &#8628;
@@ -40,6 +51,7 @@ const Post = ({ id, text, author }) => {
         ) : (
           <></>
         )}
+        {newComment === true ? <NewComment postId={id}></NewComment> : <></>}
       </StyledCommentContainer>
     </>
   );

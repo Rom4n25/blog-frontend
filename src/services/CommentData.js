@@ -7,7 +7,18 @@ const CommentData = () => {
     return response;
   }
 
-  return { getComments };
+  async function addComment(postId, post) {
+    await fetch("/comments/add/" + postId, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: post }),
+    });
+  }
+
+  return { getComments, addComment };
 };
 
 export default CommentData;
