@@ -1,20 +1,35 @@
 import { encode } from "base-64";
 
 const userData = () => {
+  async function checkIfLogged() {
+    let response = await fetch("/users/login", {
+      method: "get",
+    });
+    sessionStorage.setItem("auth", response.ok);
+    return response;
+  }
+
   async function logIn(username, password) {
-    let response = await fetch("/users/all", {
+    let response = await fetch("/users/login", {
       method: "get",
       credentials: "include",
       headers: {
         Authorization: "Basic " + encode(username + ":" + password),
       },
     });
-    response = await response.json();
-    console.log(response);
+    sessionStorage.setItem("auth", response.ok);
+
     return response;
   }
 
-  return { logIn };
+  async function logOut() {
+    await fetch("/users/logout", {
+      method: "get",
+      credentials: "include",
+    });
+    sessionStorage.removeItem("auth");
+  }
+  return { logIn, logOut, checkIfLogged };
 };
 
 export default userData;

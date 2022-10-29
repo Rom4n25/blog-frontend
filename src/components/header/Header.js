@@ -1,14 +1,15 @@
 import StyledHeader from "../styles/StyledHeader";
-import { useCookies } from "react-cookie";
+import userData from "../../services/UserData";
 
-const Header = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
-
+const Header = ({ setAuthentication }) => {
   return (
     <StyledHeader>
       <div>
-        <button onClick={() => removeCookie("accessToken")}>Log Out</button>
+        <button
+          onClick={() => userData().logOut().then(setAuthentication(false))}
+        >
+          Log Out
+        </button>
       </div>
     </StyledHeader>
   );

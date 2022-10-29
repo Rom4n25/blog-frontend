@@ -1,26 +1,25 @@
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
-import { useCookies } from "react-cookie";
-import { Navigate } from "react-router-dom";
+import Login from "./components/Login";
+import { useEffect, useState } from "react";
 
 const App = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
+  const [authentication, setAuthentication] = useState(false);
 
-  if (cookies.accessToken) {
+  useEffect(() => {
+    if (sessionStorage.getItem("auth") === "true") {
+      setAuthentication(true);
+    }
+  }, [setAuthentication]);
+
+  if (authentication) {
     return (
-      <div>
-        <Header />
+      <>
+        <Header setAuthentication={setAuthentication} />
         <Main />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Navigate to="/login"></Navigate>
-      </div>
+      </>
     );
   }
+  return <Login setAuthentication={setAuthentication} />;
 };
-
 export default App;

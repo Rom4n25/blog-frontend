@@ -1,8 +1,8 @@
-const postData = () => {
+const PostData = () => {
   async function getAllPosts() {
     let response = await fetch("/posts/all", {
       method: "get",
-    }).catch();
+    });
     response = await response.json();
     return response;
   }
@@ -21,4 +21,4 @@ const postData = () => {
   return { getAllPosts, addPost };
 };
 
-export default postData;
+export default PostData;

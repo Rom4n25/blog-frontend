@@ -1,8 +1,7 @@
 import StyledPostContainer from "../styles/StyledPostContainer";
 import Post from "./Post";
 import postData from "../../services/PostData";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewPost from "./NewPost";
 
 const PostContainer = () => {

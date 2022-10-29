@@ -1,12 +1,12 @@
 import StyledNewPost from "../styles/StyledNewPost";
 import { useState } from "react";
-import postData from "../../services/PostData";
+import PostData from "../../services/PostData";
 
 const NewPost = () => {
   const [post, setPost] = useState("");
 
   const addPost = () => {
-    postData().addPost(post).then(window.location.reload(false));
+    PostData().addPost(post).then(window.location.reload(false));
   };
 
   return (

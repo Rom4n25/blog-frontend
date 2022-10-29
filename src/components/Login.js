@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import userData from "../services/UserData";
-import { useNavigate } from "react-router-dom";
 import StyledForm from "./styles/StyledForm";
 import StyledLoginFormWrapper from "./styles/StyledLoginFormWrapper";
 
-const Login = () => {
+const Login = ({ setAuthentication }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
   return (
     <StyledLoginFormWrapper>
       <StyledForm
@@ -15,7 +14,7 @@ const Login = () => {
           e.preventDefault();
           userData()
             .logIn(username, password)
-            .then(() => navigate("/"));
+            .then((response) => setAuthentication(response.status === 200));
         }}
       >
         <label>Username</label>
