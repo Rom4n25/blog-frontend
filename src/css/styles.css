@@ -7,3 +7,8 @@ div#root{
 * {
     font-family: 'Roboto', sans-serif;
 }
+
+::placeholder {
+    color: #eaeaea;
+    opacity: 0.95;
+  }

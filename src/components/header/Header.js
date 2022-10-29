@@ -1,16 +1,15 @@
 import StyledHeader from "../styles/StyledHeader";
+import StyledButton from "../styles/StyledButton";
 import userData from "../../services/UserData";
 
 const Header = ({ setAuthentication }) => {
   return (
     <StyledHeader>
-      <div>
-        <button
-          onClick={() => userData().logOut().then(setAuthentication(false))}
-        >
-          Log Out
-        </button>
-      </div>
+      <StyledButton
+        onClick={() => userData().logOut().then(setAuthentication(false))}
+      >
+        Log Out
+      </StyledButton>
     </StyledHeader>
   );
 };

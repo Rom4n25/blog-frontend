@@ -1,6 +1,8 @@
 import StyledNewPost from "../styles/StyledNewPost";
 import { useState } from "react";
 import PostData from "../../services/PostData";
+import StyledButton from "../styles/StyledButton";
+import StyledTextArea from "../styles/StyledTextArea";
 
 const NewPost = () => {
   const [post, setPost] = useState("");
@@ -10,15 +12,17 @@ const NewPost = () => {
   };
 
   return (
-    <StyledNewPost>
-      <textarea
-        onChange={(e) => setPost(e.target.value)}
-        rows={5}
-        cols={60}
-        placeholder="Say something..."
-      ></textarea>
-      <button onClick={addPost}>Add Post</button>
-    </StyledNewPost>
+    <>
+      <StyledNewPost>
+        <StyledTextArea
+          onChange={(e) => setPost(e.target.value)}
+          rows={5}
+          cols={60}
+          placeholder="Say something..."
+        ></StyledTextArea>
+      </StyledNewPost>
+      <StyledButton onClick={addPost}>Add Post</StyledButton>
+    </>
   );
 };
 

@@ -7,6 +7,8 @@ const StyledButton = styled.button`
   border: none;
   margin-top: 4px;
   color: #eaeaea;
+  cursor: pointer;
+  padding: 8px;
 `;
 
 export default StyledButton;

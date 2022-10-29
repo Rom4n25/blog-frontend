@@ -5,6 +5,8 @@ const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #eaeaea;
+  padding: 30px;
 `;
 
 export default StyledMain;
