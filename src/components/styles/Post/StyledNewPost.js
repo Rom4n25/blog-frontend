@@ -8,7 +8,7 @@ const StyledNewPost = styled.div`
   width: 600px;
   padding: 20px;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export default StyledNewPost;

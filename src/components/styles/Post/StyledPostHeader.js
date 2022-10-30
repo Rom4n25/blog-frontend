@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledPostAuthor = styled.div`
+const StyledPostHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -11,4 +11,4 @@ const StyledPostAuthor = styled.div`
   padding-bottom: 5px;
 `;
 
-export default StyledPostAuthor;
+export default StyledPostHeader;

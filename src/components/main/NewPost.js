@@ -1,4 +1,4 @@
-import StyledNewPost from "../styles/StyledNewPost";
+import StyledNewPost from "../styles/Post/StyledNewPost";
 import { useState } from "react";
 import PostData from "../../services/PostData";
 import StyledButton from "../styles/StyledButton";

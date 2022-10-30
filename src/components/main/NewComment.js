@@ -1,8 +1,8 @@
-import StyledNewPost from "../styles/StyledNewPost";
 import { useState } from "react";
 import CommentData from "../../services/CommentData";
 import StyledButton from "../styles/StyledButton";
 import StyledTextArea from "../styles/StyledTextArea";
+import StyledNewComment from "../styles/StyledNewComment";
 
 const NewComment = ({ postId }) => {
   const [comment, setComment] = useState("");
@@ -15,7 +15,7 @@ const NewComment = ({ postId }) => {
 
   return (
     <>
-      <StyledNewPost>
+      <StyledNewComment>
         <StyledTextArea
           onChange={(e) => setComment(e.target.value)}
           rows={5}
@@ -23,7 +23,7 @@ const NewComment = ({ postId }) => {
           placeholder="Say something..."
         ></StyledTextArea>
         <StyledButton onClick={addComment}>Add Comment</StyledButton>
-      </StyledNewPost>
+      </StyledNewComment>
     </>
   );
 };

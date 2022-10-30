@@ -1,6 +1,6 @@
 const PostData = () => {
-  async function getAllPosts() {
-    let response = await fetch("/posts/all", {
+  async function getAllPosts(page) {
+    let response = await fetch("/posts/all/" + page, {
       method: "get",
     });
     response = await response.json();
