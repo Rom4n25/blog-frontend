@@ -36,7 +36,7 @@ const PostContainer = () => {
 
   return (
     <StyledPostContainer key={"postContainer"} id="postContainer">
-      <NewPost></NewPost>
+      <NewPost setPosts={setPosts}></NewPost>
       {posts.map((post) => (
         <Post
           key={post.id}
