@@ -1,23 +1,19 @@
 import StyledPost from "../styles/Post/StyledPost";
 import Comment from "./Comment";
 import { useState } from "react";
-import CommentData from "../../services/CommentData";
 import StyledCommentButton from "../styles/Comment/StyledCommentButton";
 import StyledPostText from "../styles/Post/StyledPostText";
 import StyledCommentContainer from "../styles/Comment/StyledCommentContainer";
 import NewComment from "./NewComment";
 import PostHeader from "./PostHeader";
 
-const Post = ({ id, text, author, created }) => {
+const Post = ({ id, text, author, comment, created }) => {
   const [showComments, setShowComments] = useState(false);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(comment);
   const [newComment, setNewComment] = useState(false);
 
   const displayComments = () => {
-    CommentData()
-      .getComments(id)
-      .then((comments) => setComments(comments))
-      .then(setShowComments(!showComments));
+    setShowComments(!showComments);
   };
 
   const addComment = () => {
@@ -36,7 +32,11 @@ const Post = ({ id, text, author, created }) => {
         ></PostHeader>
         <StyledPostText>{text}</StyledPostText>
         <StyledCommentButton value={showComments} onClick={displayComments}>
-          show comments &#8628;
+          {comments.length > 0 ? (
+            <p>show comments {comments.length}&#8628;</p>
+          ) : (
+            <></>
+          )}
         </StyledCommentButton>
       </StyledPost>
       <StyledCommentContainer>

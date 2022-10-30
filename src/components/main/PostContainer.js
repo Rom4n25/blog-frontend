@@ -44,6 +44,7 @@ const PostContainer = () => {
           text={post.text}
           created={post.created}
           author={post.user.username}
+          comment={post.comment}
         ></Post>
       ))}
     </StyledPostContainer>
