@@ -20,8 +20,6 @@ const Post = ({ id, text, author, comment, created }) => {
     setNewComment(!newComment);
   };
 
-  console.log(comments);
-
   return (
     <>
       <StyledPost>
@@ -33,7 +31,7 @@ const Post = ({ id, text, author, comment, created }) => {
         <StyledPostText>{text}</StyledPostText>
         <StyledCommentButton value={showComments} onClick={displayComments}>
           {comments.length > 0 ? (
-            <p>show comments {comments.length}&#8628;</p>
+            <p>show comments ({comments.length})&#8628;</p>
           ) : (
             <></>
           )}

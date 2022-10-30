@@ -6,6 +6,7 @@ div#root{
 
 * {
     font-family: 'Roboto', sans-serif;
+    overflow-anchor: none;
 }
 
 ::placeholder {

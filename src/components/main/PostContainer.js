@@ -7,7 +7,6 @@ import NewPost from "./NewPost";
 const PostContainer = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
-
   useEffect(() => {
     postData()
       .getAllPosts(0)
@@ -23,10 +22,8 @@ const PostContainer = () => {
         postData()
           .getAllPosts(page)
           .then((post) => {
-            if (post.status !== 404) {
-              setPosts(posts.concat(post));
-              setPage(page + 1);
-            }
+            setPosts((posts) => posts.concat(post));
+            setPage((page) => page + 1);
           });
         window.removeEventListener("scroll", scrolling_function);
       }
@@ -39,7 +36,7 @@ const PostContainer = () => {
       <NewPost setPosts={setPosts}></NewPost>
       {posts.map((post) => (
         <Post
-          key={post.id}
+          key={post.id.toString()}
           id={post.id}
           text={post.text}
           created={post.created}
