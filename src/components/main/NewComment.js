@@ -4,19 +4,27 @@ import StyledButton from "../styles/StyledButton";
 import StyledTextArea from "../styles/StyledTextArea";
 import StyledNewComment from "../styles/Comment/StyledNewComment";
 
-const NewComment = ({ postId }) => {
+const NewComment = ({ postId, setComments }) => {
   const [comment, setComment] = useState("");
 
   const addComment = () => {
     CommentData()
       .addComment(postId, comment)
-      .then(window.location.reload(false));
+      .then(() => {
+        CommentData()
+          .getComments(postId)
+          .then((comments) => {
+            setComments(comments);
+            setComment("");
+          });
+      });
   };
 
   return (
     <>
       <StyledNewComment>
         <StyledTextArea
+          value={comment}
           onChange={(e) => setComment(e.target.value)}
           rows={5}
           cols={60}

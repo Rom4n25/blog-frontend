@@ -11,7 +11,7 @@ import PostHeader from "./PostHeader";
 const Post = ({ id, text, author, created }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState([]);
+  const [newComment, setNewComment] = useState(false);
 
   const displayComments = () => {
     CommentData()
@@ -23,6 +23,8 @@ const Post = ({ id, text, author, created }) => {
   const addComment = () => {
     setNewComment(!newComment);
   };
+
+  console.log(comments);
 
   return (
     <>
@@ -52,7 +54,11 @@ const Post = ({ id, text, author, created }) => {
         )}
       </StyledCommentContainer>
 
-      {newComment === true ? <NewComment postId={id}></NewComment> : <></>}
+      {newComment === true ? (
+        <NewComment postId={id} setComments={setComments}></NewComment>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
