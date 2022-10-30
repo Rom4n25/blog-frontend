@@ -2,9 +2,9 @@ import StyledPost from "../styles/Post/StyledPost";
 import Comment from "./Comment";
 import { useState } from "react";
 import CommentData from "../../services/CommentData";
-import StyledCommentButton from "../styles/StyledCommentButton";
+import StyledCommentButton from "../styles/Comment/StyledCommentButton";
 import StyledPostText from "../styles/Post/StyledPostText";
-import StyledCommentContainer from "../styles/StyledCommentContainer";
+import StyledCommentContainer from "../styles/Comment/StyledCommentContainer";
 import NewComment from "./NewComment";
 import PostHeader from "./PostHeader";
 
@@ -44,6 +44,7 @@ const Post = ({ id, text, author, created }) => {
               key={comment.id}
               text={comment.text}
               author={comment.user.username}
+              created={comment.created}
             ></Comment>
           ))
         ) : (

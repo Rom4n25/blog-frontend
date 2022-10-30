@@ -1,7 +1,7 @@
 import StyledPostHeader from "../styles/Post/StyledPostHeader";
 import StyledPostAuthor from "../styles/Post/StyledPostAuthor";
 import StyledPostDate from "../styles/Post/StyledPostDate";
-import StyledCommentButton from "../styles/StyledCommentButton";
+import StyledCommentButton from "../styles/Comment/StyledCommentButton";
 
 const PostHeader = ({ created, author, addComment }) => {
   return (

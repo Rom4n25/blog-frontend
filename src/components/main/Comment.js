@@ -1,11 +1,21 @@
-import StyledComment from "../styles/StyledComment";
-import StyledCommentAuthor from "../styles/StyledCommentAuthor";
-import StyledCommentText from "../styles/StyledCommentText";
+import StyledComment from "../styles/Comment/StyledComment";
+import StyledCommentAuthor from "../styles/Comment/StyledCommentAuthor";
+import StyledCommentDate from "../styles/Comment/StyledCommentDate";
+import StyledCommentHeader from "../styles/Comment/StyledCommentHeader";
+import StyledCommentText from "../styles/Comment/StyledCommentText";
 
-const Comment = ({ text, author }) => {
+const Comment = ({ text, author, created }) => {
   return (
     <StyledComment>
-      <StyledCommentAuthor>@{author}</StyledCommentAuthor>
+      <StyledCommentHeader>
+        <div>
+          <StyledCommentAuthor>@{author + " "}</StyledCommentAuthor>
+          <StyledCommentDate>
+            {new Date(created).toUTCString()}
+          </StyledCommentDate>
+        </div>
+      </StyledCommentHeader>
+
       <StyledCommentText>{text}</StyledCommentText>
     </StyledComment>
   );

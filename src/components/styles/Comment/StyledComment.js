@@ -5,7 +5,6 @@ const StyledComment = styled.div`
   flex-direction: column;
   align-items: left;
   background-color: #3c4048;
-
   padding-top: 20px;
   padding-left: 40px;
   padding-right: 40px;
