@@ -18,6 +18,7 @@ const Post = ({ id, text, author, comment, created }) => {
 
   const addComment = () => {
     setNewComment(!newComment);
+    setShowComments(true);
   };
 
   return (
@@ -53,7 +54,11 @@ const Post = ({ id, text, author, comment, created }) => {
       </StyledCommentContainer>
 
       {newComment === true ? (
-        <NewComment postId={id} setComments={setComments}></NewComment>
+        <NewComment
+          postId={id}
+          setComments={setComments}
+          setNewComment={setNewComment}
+        ></NewComment>
       ) : (
         <></>
       )}

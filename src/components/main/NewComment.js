@@ -4,7 +4,7 @@ import StyledButton from "../styles/StyledButton";
 import StyledTextArea from "../styles/StyledTextArea";
 import StyledNewComment from "../styles/Comment/StyledNewComment";
 
-const NewComment = ({ postId, setComments }) => {
+const NewComment = ({ postId, setComments, setNewComment }) => {
   const [comment, setComment] = useState("");
 
   const addComment = () => {
@@ -16,6 +16,7 @@ const NewComment = ({ postId, setComments }) => {
           .then((comments) => {
             setComments(comments);
             setComment("");
+            setNewComment(false);
           });
       });
   };
