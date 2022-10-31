@@ -42,7 +42,7 @@ const Post = ({ id, text, author, comment, created }) => {
         {showComments === true ? (
           comments.map((comment) => (
             <Comment
-              key={"comment_" + comment.id}
+              key={comment.id}
               text={comment.text}
               author={comment.user.username}
               created={comment.created}

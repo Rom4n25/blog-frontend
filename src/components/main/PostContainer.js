@@ -37,7 +37,7 @@ const PostContainer = () => {
       <NewPost setPosts={setPosts}></NewPost>
       {posts.map((post) => (
         <Post
-          key={"post_" + post.id}
+          key={post.id}
           id={post.id}
           text={post.text}
           created={post.created}
