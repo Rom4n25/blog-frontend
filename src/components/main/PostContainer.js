@@ -7,6 +7,7 @@ import NewPost from "./NewPost";
 const PostContainer = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
+
   useEffect(() => {
     postData()
       .getAllPosts(0)
@@ -14,29 +15,29 @@ const PostContainer = () => {
   }, []);
 
   useEffect(() => {
-    const scrolling_function = () => {
+    const scrollEvent = () => {
       if (
         window.innerHeight + window.scrollY >=
-        document.getElementById("postContainer").offsetHeight + 10
+        document.getElementById("postContainer").offsetHeight + 50
       ) {
         postData()
           .getAllPosts(page)
           .then((post) => {
-            setPosts((posts) => posts.concat(post));
             setPage((page) => page + 1);
+            setPosts((posts) => posts.concat(post));
           });
-        window.removeEventListener("scroll", scrolling_function);
+        window.removeEventListener("scroll", scrollEvent);
       }
     };
-    window.addEventListener("scroll", scrolling_function);
-  }, [page, posts]);
+    window.addEventListener("scroll", scrollEvent);
+  }, [page]);
 
   return (
     <StyledPostContainer key={"postContainer"} id="postContainer">
       <NewPost setPosts={setPosts}></NewPost>
       {posts.map((post) => (
         <Post
-          key={post.id.toString()}
+          key={"post_" + post.id}
           id={post.id}
           text={post.text}
           created={post.created}
