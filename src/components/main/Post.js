@@ -1,9 +1,9 @@
-import StyledPost from "../styles/Post/StyledPost";
+import StyledPost from "../../styles/Post/StyledPost";
 import Comment from "./Comment";
 import { useState } from "react";
-import StyledCommentButton from "../styles/Comment/StyledCommentButton";
-import StyledPostText from "../styles/Post/StyledPostText";
-import StyledCommentContainer from "../styles/Comment/StyledCommentContainer";
+import StyledCommentButton from "../../styles/Comment/StyledCommentButton";
+import StyledPostText from "../../styles/Post/StyledPostText";
+import StyledCommentContainer from "../../styles/Comment/StyledCommentContainer";
 import NewComment from "./NewComment";
 import PostHeader from "./PostHeader";
 

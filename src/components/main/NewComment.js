@@ -1,8 +1,8 @@
 import { useState } from "react";
 import CommentData from "../../services/CommentData";
-import StyledButton from "../styles/StyledButton";
-import StyledTextArea from "../styles/StyledTextArea";
-import StyledNewComment from "../styles/Comment/StyledNewComment";
+import StyledButton from "../../styles/StyledButton";
+import StyledTextArea from "../../styles/StyledTextArea";
+import StyledNewComment from "../../styles/Comment/StyledNewComment";
 
 const NewComment = ({ postId, setComments, setNewComment }) => {
   const [comment, setComment] = useState("");

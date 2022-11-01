@@ -1,4 +1,4 @@
-import StyledPostContainer from "../styles/Post/StyledPostContainer";
+import StyledPostContainer from "../../styles/Post/StyledPostContainer";
 import Post from "./Post";
 import postData from "../../services/PostData";
 import { useEffect, useState } from "react";

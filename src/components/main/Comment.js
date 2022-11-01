@@ -1,8 +1,8 @@
-import StyledComment from "../styles/Comment/StyledComment";
-import StyledCommentAuthor from "../styles/Comment/StyledCommentAuthor";
-import StyledCommentDate from "../styles/Comment/StyledCommentDate";
-import StyledCommentHeader from "../styles/Comment/StyledCommentHeader";
-import StyledCommentText from "../styles/Comment/StyledCommentText";
+import StyledComment from "../../styles/Comment/StyledComment";
+import StyledCommentAuthor from "../../styles/Comment/StyledCommentAuthor";
+import StyledCommentDate from "../../styles/Comment/StyledCommentDate";
+import StyledCommentHeader from "../../styles/Comment/StyledCommentHeader";
+import StyledCommentText from "../../styles/Comment/StyledCommentText";
 
 const Comment = ({ text, author, created }) => {
   return (

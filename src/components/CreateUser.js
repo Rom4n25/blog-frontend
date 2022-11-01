@@ -1,33 +1,28 @@
-import React, { useState } from "react";
-import userData from "../services/UserData";
-import Form from "../components/Form";
-import StyledButton from "../styles/StyledButton";
+import Form from "./Form";
+import { useState } from "react";
 import StyledHeader from "../styles/StyledHeader";
-
+import StyledButton from "../styles/StyledButton";
+import userData from "../services/UserData";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setAuthentication }) => {
+const CreateUser = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const submitForm = (e) => {
     e.preventDefault();
-    userData()
-      .logIn(username, password)
-      .then((response) => setAuthentication(response.status === 200));
+    userData().create(username, password).then(navigate("/"));
   };
 
   return (
     <>
       <StyledHeader>
-        <StyledButton onClick={() => navigate("/create-account")}>
-          Create account
-        </StyledButton>
+        <StyledButton onClick={() => navigate("/")}>Back to login</StyledButton>
       </StyledHeader>
       <Form
-        formName={"Mikroblog"}
-        btnName={"Login"}
+        formName={"Create account"}
+        btnName={"Create"}
         onSubmit={submitForm}
         username={username}
         setUsername={setUsername}
@@ -38,4 +33,4 @@ const Login = ({ setAuthentication }) => {
   );
 };
 
-export default Login;
+export default CreateUser;

@@ -29,7 +29,18 @@ const userData = () => {
     });
     sessionStorage.removeItem("auth");
   }
-  return { logIn, logOut, checkIfLogged };
+
+  async function create(username, password) {
+    await fetch("/users/add", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+  }
+  return { logIn, logOut, checkIfLogged, create };
 };
 
 export default userData;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledLoginFormWrapper = styled.div`
+const StyledFormWrapper = styled.div`
   width: 250px;
   border: 1px solid rgb(0, 171, 179);
   border-radius: 4px;
@@ -16,4 +16,4 @@ const StyledLoginFormWrapper = styled.div`
   font-size: 23px;
 `;
 
-export default StyledLoginFormWrapper;
+export default StyledFormWrapper;

@@ -3,6 +3,7 @@ const PostData = () => {
     let response = await fetch("/posts/all/" + page, {
       method: "get",
     });
+
     response = await response.json();
     return response;
   }

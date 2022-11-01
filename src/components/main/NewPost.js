@@ -1,8 +1,8 @@
-import StyledNewPost from "../styles/Post/StyledNewPost";
+import StyledNewPost from "../../styles/Post/StyledNewPost";
 import { useState } from "react";
 import PostData from "../../services/PostData";
-import StyledButton from "../styles/StyledButton";
-import StyledTextArea from "../styles/StyledTextArea";
+import StyledButton from "../../styles/StyledButton";
+import StyledTextArea from "../../styles/StyledTextArea";
 
 const NewPost = ({ setPosts }) => {
   const [post, setPost] = useState("");
