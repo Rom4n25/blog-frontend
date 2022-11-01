@@ -1,13 +1,13 @@
 import { encode } from "base-64";
 
-const userData = () => {
-  async function checkIfLogged() {
+const UserData = () => {
+  const checkIfLogged = async () => {
     let response = await fetch("/users/login", {
       method: "get",
     });
     sessionStorage.setItem("auth", response.ok);
     return response;
-  }
+  };
 
   async function logIn(username, password) {
     let response = await fetch("/users/login", {
@@ -43,4 +43,4 @@ const userData = () => {
   return { logIn, logOut, checkIfLogged, create };
 };
 
-export default userData;
+export default UserData;

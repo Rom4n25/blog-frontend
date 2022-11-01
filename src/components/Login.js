@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import userData from "../services/UserData";
+import UserData from "../services/UserData";
 import Form from "../components/Form";
 import StyledButton from "../styles/StyledButton";
 import StyledHeader from "../styles/StyledHeader";
@@ -13,7 +13,7 @@ const Login = ({ setAuthentication }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    userData()
+    UserData()
       .logIn(username, password)
       .then((response) => setAuthentication(response.status === 200));
   };

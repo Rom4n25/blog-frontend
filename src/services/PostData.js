@@ -16,10 +16,8 @@ const PostData = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ text: post }),
-    }).catch();
+    });
   }
-
   return { getAllPosts, addPost };
 };
-
 export default PostData;

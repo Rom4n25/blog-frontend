@@ -2,7 +2,7 @@ import Form from "./Form";
 import { useState } from "react";
 import StyledHeader from "../styles/StyledHeader";
 import StyledButton from "../styles/StyledButton";
-import userData from "../services/UserData";
+import UserData from "../services/UserData";
 import { useNavigate } from "react-router-dom";
 
 const CreateUser = () => {
@@ -12,7 +12,7 @@ const CreateUser = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    userData().create(username, password).then(navigate("/"));
+    UserData().create(username, password).then(navigate("/"));
   };
 
   return (
