@@ -9,6 +9,8 @@ const App = () => {
   useEffect(() => {
     if (sessionStorage.getItem("auth") === "true") {
       setAuthentication(true);
+    } else {
+      setAuthentication(false);
     }
   }, [setAuthentication]);
 
