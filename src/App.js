@@ -12,7 +12,7 @@ const App = () => {
     } else {
       setAuthentication(false);
     }
-  }, [setAuthentication]);
+  }, []);
 
   if (authentication) {
     return (
