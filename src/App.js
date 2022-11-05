@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const App = () => {
   const [authentication, setAuthentication] = useState(false);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     if (sessionStorage.getItem("auth") === "true") {
@@ -18,10 +19,10 @@ const App = () => {
     return (
       <>
         <Header setAuthentication={setAuthentication} />
-        <Main />
+        <Main userId={userId} />
       </>
     );
   }
-  return <Login setAuthentication={setAuthentication} />;
+  return <Login setUserId={setUserId} setAuthentication={setAuthentication} />;
 };
 export default App;

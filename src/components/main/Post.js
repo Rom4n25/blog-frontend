@@ -7,7 +7,7 @@ import StyledCommentContainer from "../../styles/Comment/StyledCommentContainer"
 import NewComment from "./NewComment";
 import PostHeader from "./PostHeader";
 
-const Post = ({ id, text, author, comment, created }) => {
+const Post = ({ id, text, author, comment, created, userId }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(comment);
   const [newComment, setNewComment] = useState(false);
@@ -28,6 +28,7 @@ const Post = ({ id, text, author, comment, created }) => {
           addComment={addComment}
           author={author}
           created={created}
+          userId={userId}
         ></PostHeader>
         <StyledPostText>{text}</StyledPostText>
         <StyledCommentButton value={showComments} onClick={displayComments}>

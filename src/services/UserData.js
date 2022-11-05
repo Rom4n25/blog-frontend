@@ -11,11 +11,14 @@ const UserData = () => {
 
   async function logIn(username, password) {
     let response = await fetch("/users/login", {
-      method: "get",
+      method: "post",
       credentials: "include",
       headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: "Basic " + encode(username + ":" + password),
       },
+      body: JSON.stringify({ username }),
     });
     sessionStorage.setItem("auth", response.ok);
 
@@ -40,7 +43,15 @@ const UserData = () => {
       body: JSON.stringify({ username, password }),
     });
   }
-  return { logIn, logOut, checkIfLogged, create };
+
+  async function getUserIdFromUsername(username) {
+    let response = await fetch("/users/username/" + username, {
+      method: "get",
+    });
+
+    return await response.json();
+  }
+  return { logIn, logOut, checkIfLogged, create, getUserIdFromUsername };
 };
 
 export default UserData;

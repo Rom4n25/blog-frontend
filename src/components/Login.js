@@ -6,7 +6,7 @@ import StyledHeader from "../styles/StyledHeader";
 
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setAuthentication }) => {
+const Login = ({ setUserId, setAuthentication }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -15,7 +15,10 @@ const Login = ({ setAuthentication }) => {
     e.preventDefault();
     UserData()
       .logIn(username, password)
-      .then((response) => setAuthentication(response.status === 200));
+      .then((response) => {
+        response.json().then((data) => setUserId(data.id));
+        setAuthentication(response.status === 200);
+      });
   };
 
   return (

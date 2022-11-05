@@ -4,7 +4,7 @@ import postData from "../../services/PostData";
 import { useEffect, useState } from "react";
 import NewPost from "./NewPost";
 
-const PostContainer = () => {
+const PostContainer = ({ userId }) => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -43,6 +43,7 @@ const PostContainer = () => {
           created={post.created}
           author={post.user.username}
           comment={post.comment}
+          userId={userId}
         ></Post>
       ))}
     </StyledPostContainer>
