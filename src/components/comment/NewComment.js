@@ -31,7 +31,9 @@ const NewComment = ({ postId, setComments, setNewComment }) => {
           cols={60}
           placeholder="Say something..."
         ></StyledTextArea>
-        <StyledButton onClick={addComment}>Add Comment</StyledButton>
+        <StyledButton primary onClick={addComment}>
+          Add Comment
+        </StyledButton>
       </StyledNewComment>
     </>
   );

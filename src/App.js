@@ -1,6 +1,6 @@
-import Header from "./components/header/Header";
-import Main from "./components/main/Main";
-import Login from "./components/Login";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Login from "./pages/Login";
 import { useEffect, useState } from "react";
 
 const App = () => {

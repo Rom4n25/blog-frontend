@@ -9,7 +9,7 @@ const StyledFormWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   background-color: #3c4048;
-  opacity: 0.85;
+
   color: #eaeaea;
   padding: 30px;
   text-align: center;

@@ -10,10 +10,11 @@ const StyledButton = styled.button`
   cursor: pointer;
   padding: 8px;
   font-size: 15px;
-
   &:hover {
     transform: scale(1.02);
   }
+
+  background-color: ${(props) => (props.primary ? "#00abb3" : "#3c4048")};
 `;
 
 export default StyledButton;

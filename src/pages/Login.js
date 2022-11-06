@@ -16,7 +16,6 @@ const Login = ({ setUserId, setAuthentication }) => {
     UserData()
       .logIn(username, password)
       .then((response) => {
-        response.json().then((data) => setUserId(data.id));
         setAuthentication(response.status === 200);
       });
   };

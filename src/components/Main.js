@@ -1,5 +1,5 @@
-import StyledMain from "../../styles/StyledMain";
-import PostContainer from "./PostContainer";
+import StyledMain from "../styles/StyledMain";
+import PostContainer from "./post/PostContainer";
 
 const Main = ({ userId }) => {
   return (

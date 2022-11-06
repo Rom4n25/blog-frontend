@@ -1,17 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import StyledHeader from "../styles/StyledHeader";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import StyledPostContainer from "../styles/Post/StyledPostContainer";
 import StyledMain from "../styles/StyledMain";
-import Post from "./main/Post";
+import Post from "../components/post/Post";
 import PostData from "../services/PostData";
 import UserData from "../services/UserData";
+import StyledButton from "../styles/StyledButton";
 
 const User = () => {
+  const initialMount = useRef(true);
   const { username } = useParams();
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
-  const [userId, setUserId] = useState();
+  const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     UserData()
@@ -20,7 +23,7 @@ const User = () => {
   }, [username]);
 
   useEffect(() => {
-    if (userId !== undefined) {
+    if (userId) {
       PostData()
         .getAllPostsByUserId(userId, 0)
         .then((post) => setPosts(post));
@@ -42,12 +45,26 @@ const User = () => {
         window.removeEventListener("scroll", scrollEvent);
       }
     };
-    window.addEventListener("scroll", scrollEvent);
-  }, [userId, page]);
+
+    if (initialMount.current) {
+      initialMount.current = false;
+    } else {
+      window.addEventListener("scroll", scrollEvent);
+    }
+    return () => window.removeEventListener("scroll", scrollEvent);
+  }, [page, userId]);
 
   return (
     <>
-      <StyledHeader>{username}</StyledHeader>
+      <StyledHeader>
+        <StyledButton
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Mikroblog
+        </StyledButton>
+      </StyledHeader>
       <StyledMain>
         <StyledPostContainer key={"postContainer"} id="postContainer">
           {posts.map((post) => (

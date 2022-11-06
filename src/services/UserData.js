@@ -14,11 +14,8 @@ const UserData = () => {
       method: "post",
       credentials: "include",
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
         Authorization: "Basic " + encode(username + ":" + password),
       },
-      body: JSON.stringify({ username }),
     });
     sessionStorage.setItem("auth", response.ok);
 

@@ -19,7 +19,9 @@ const Form = ({ formName, btnName, onSubmit, setUsername, setPassword }) => {
           type={"password"}
           onChange={(e) => setPassword(e.target.value)}
         ></StyledInput>
-        <StyledButton type={"submit"}>{btnName}</StyledButton>
+        <StyledButton primary type={"submit"}>
+          {btnName}
+        </StyledButton>
       </StyledForm>
     </StyledFormWrapper>
   );

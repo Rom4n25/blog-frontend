@@ -1,6 +1,6 @@
-import StyledHeader from "../../styles/StyledHeader";
-import StyledButton from "../../styles/StyledButton";
-import UserData from "../../services/UserData";
+import StyledHeader from "../styles/StyledHeader";
+import StyledButton from "../styles/StyledButton";
+import UserData from "../services/UserData";
 
 const Header = ({ setAuthentication }) => {
   return (

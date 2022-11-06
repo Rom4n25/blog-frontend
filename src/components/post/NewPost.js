@@ -30,7 +30,9 @@ const NewPost = ({ setPosts }) => {
           cols={60}
           placeholder="Say something..."
         ></StyledTextArea>
-        <StyledButton onClick={addPost}>Add Post</StyledButton>
+        <StyledButton primary onClick={addPost}>
+          Add Post
+        </StyledButton>
       </StyledNewPost>
     </>
   );

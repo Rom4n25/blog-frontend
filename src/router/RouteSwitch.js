@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "../App";
-import CreateUser from "../components/CreateUser";
-import User from "../components/User";
+import CreateUser from "../pages/CreateUser";
+import User from "../pages/User";
 
 const RouteSwitch = () => {
   return (

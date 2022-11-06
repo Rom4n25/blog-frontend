@@ -1,10 +1,10 @@
 import StyledPost from "../../styles/Post/StyledPost";
-import Comment from "./Comment";
+import Comment from "../comment/Comment";
 import { useState } from "react";
 import StyledCommentButton from "../../styles/Comment/StyledCommentButton";
 import StyledPostText from "../../styles/Post/StyledPostText";
 import StyledCommentContainer from "../../styles/Comment/StyledCommentContainer";
-import NewComment from "./NewComment";
+import NewComment from "../comment/NewComment";
 import PostHeader from "./PostHeader";
 
 const Post = ({ id, text, author, comment, created, userId }) => {

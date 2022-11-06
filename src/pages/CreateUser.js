@@ -1,4 +1,4 @@
-import Form from "./Form";
+import Form from "../components/Form";
 import { useState } from "react";
 import StyledHeader from "../styles/StyledHeader";
 import StyledButton from "../styles/StyledButton";
