@@ -11,7 +11,10 @@ const PostContainer = ({ userId }) => {
   useEffect(() => {
     postData()
       .getAllPosts(0)
-      .then((post) => setPosts(post));
+      .then((post) => {
+        setPosts(post);
+        console.log(post);
+      });
   }, []);
 
   useEffect(() => {
@@ -44,6 +47,7 @@ const PostContainer = ({ userId }) => {
           author={post.user.username}
           comment={post.comment}
           userId={userId}
+          img={post.img}
         ></Post>
       ))}
     </StyledPostContainer>

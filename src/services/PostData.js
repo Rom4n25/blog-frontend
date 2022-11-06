@@ -43,8 +43,16 @@ const PostData = () => {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
     }
+    return await response.json();
   }
-  return { getAllPosts, getAllPostsByUserId, addPost };
+
+  async function uploadImage(image) {
+    await fetch("/posts/img/add", {
+      method: "post",
+      body: image,
+    });
+  }
+  return { getAllPosts, getAllPostsByUserId, addPost, uploadImage };
 };
 
 export default PostData;

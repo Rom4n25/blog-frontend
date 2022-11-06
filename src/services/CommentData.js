@@ -31,9 +31,17 @@ const CommentData = () => {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
     }
+    return await response.json();
   }
 
-  return { getComments, addComment };
+  async function uploadImage(image) {
+    await fetch("/comments/img/add", {
+      method: "post",
+      body: image,
+    });
+  }
+
+  return { getComments, addComment, uploadImage };
 };
 
 export default CommentData;

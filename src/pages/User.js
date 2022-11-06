@@ -75,6 +75,7 @@ const User = () => {
               created={post.created}
               author={post.user.username}
               comment={post.comment}
+              img={post.img}
             ></Post>
           ))}
         </StyledPostContainer>

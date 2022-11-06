@@ -3,8 +3,9 @@ import StyledCommentAuthor from "../../styles/Comment/StyledCommentAuthor";
 import StyledCommentDate from "../../styles/Comment/StyledCommentDate";
 import StyledCommentHeader from "../../styles/Comment/StyledCommentHeader";
 import StyledCommentText from "../../styles/Comment/StyledCommentText";
+import StyledImgWrapper from "../../styles/StyledImgWrapper";
 
-const Comment = ({ text, author, created }) => {
+const Comment = ({ text, author, created, img }) => {
   return (
     <StyledComment>
       <StyledCommentHeader>
@@ -15,8 +16,18 @@ const Comment = ({ text, author, created }) => {
           </StyledCommentDate>
         </div>
       </StyledCommentHeader>
-
       <StyledCommentText>{text}</StyledCommentText>
+      {img !== null ? (
+        <StyledImgWrapper>
+          <img
+            alt="img"
+            src={`data:image/jpeg;base64,${img}`}
+            width={300}
+          ></img>
+        </StyledImgWrapper>
+      ) : (
+        <></>
+      )}
     </StyledComment>
   );
 };

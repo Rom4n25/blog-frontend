@@ -6,8 +6,9 @@ import StyledPostText from "../../styles/Post/StyledPostText";
 import StyledCommentContainer from "../../styles/Comment/StyledCommentContainer";
 import NewComment from "../comment/NewComment";
 import PostHeader from "./PostHeader";
+import StyledImgWrapper from "../../styles/StyledImgWrapper";
 
-const Post = ({ id, text, author, comment, created, userId }) => {
+const Post = ({ id, text, author, comment, created, userId, img }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(comment);
   const [newComment, setNewComment] = useState(false);
@@ -31,6 +32,18 @@ const Post = ({ id, text, author, comment, created, userId }) => {
           userId={userId}
         ></PostHeader>
         <StyledPostText>{text}</StyledPostText>
+        {img !== null ? (
+          <StyledImgWrapper>
+            <img
+              alt="img"
+              src={`data:image/jpeg;base64,${img}`}
+              width={300}
+            ></img>
+          </StyledImgWrapper>
+        ) : (
+          <></>
+        )}
+
         <StyledCommentButton value={showComments} onClick={displayComments}>
           {comments.length > 0 ? (
             <p>show comments ({comments.length})&#8628;</p>
@@ -47,6 +60,7 @@ const Post = ({ id, text, author, comment, created, userId }) => {
               text={comment.text}
               author={comment.user.username}
               created={comment.created}
+              img={comment.img}
             ></Comment>
           ))
         ) : (
