@@ -2,10 +2,8 @@ import styled from "styled-components";
 
 const StyledInputFile = styled.input.attrs({ type: "file" })`
   color: transparent;
-  z-index: 10;
   position: absolute;
   width: 25px;
-  cursor: pointer;
   &:before {
     display: inline-block;
     border-radius: 3px;

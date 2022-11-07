@@ -9,9 +9,7 @@ const PostHeader = ({ created, author, addComment, userId }) => {
     <StyledPostHeader>
       <div>
         <StyledPostAuthor>
-          {" "}
           <Link id="user_link" to={"/user/" + author} state={{ userId }}>
-            {" "}
             @{author + " "}
           </Link>
         </StyledPostAuthor>

@@ -1,19 +1,23 @@
 import StyledNewPost from "../../styles/Post/StyledNewPost";
 import { useState } from "react";
 import PostData from "../../services/PostData";
-import StyledButton from "../../styles/StyledButton";
+import StyledTransparentButton from "../../styles/StyledTransparentButton";
 import StyledTextArea from "../../styles/StyledTextArea";
 import StyledInputFile from "../../styles/StyledInputFile";
 import IconImg from "../../styles/IconImg";
 import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
+import StyledPostFooter from "../../styles/Post/StyledPostFooter";
+import IconSend from "../../styles/IconSend";
 
 const NewPost = ({ setPosts }) => {
   const [post, setPost] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
 
   const addPost = () => {
     const formData = new FormData();
-    formData.append("file", image);
+    if (image) {
+      formData.append("file", image);
+    }
     formData.append("text", post);
 
     PostData()
@@ -38,20 +42,22 @@ const NewPost = ({ setPosts }) => {
           cols={60}
           placeholder="Say something..."
         ></StyledTextArea>
-        <StyledInputFileWrapper>
-          <IconImg />
-          <StyledInputFile
-            id="custom_file_input"
-            encType="multipart/form-data"
-            name="file"
-            title="upload image"
-            type={"file"}
-            onChange={(e) => setImage(e.target.files[0])}
-          ></StyledInputFile>
-        </StyledInputFileWrapper>
-        <StyledButton primary onClick={addPost}>
-          Add Post
-        </StyledButton>
+        <StyledPostFooter>
+          <StyledInputFileWrapper>
+            <IconImg />
+            <StyledInputFile
+              id="custom_file_input"
+              encType="multipart/form-data"
+              name="file"
+              title="upload image"
+              type={"file"}
+              onChange={(e) => setImage(e.target.files[0])}
+            ></StyledInputFile>
+          </StyledInputFileWrapper>
+          <StyledTransparentButton onClick={addPost}>
+            <IconSend />
+          </StyledTransparentButton>
+        </StyledPostFooter>
       </StyledNewPost>
     </>
   );

@@ -7,6 +7,7 @@ const StyledNewPost = styled.div`
   background-color: #3c4048;
   width: 600px;
   padding: 20px;
+  padding-bottom: 5px;
   border-radius: 4px;
   margin-bottom: 10px;
 `;

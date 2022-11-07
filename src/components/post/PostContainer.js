@@ -13,7 +13,6 @@ const PostContainer = ({ userId }) => {
       .getAllPosts(0)
       .then((post) => {
         setPosts(post);
-        console.log(post);
       });
   }, []);
 
