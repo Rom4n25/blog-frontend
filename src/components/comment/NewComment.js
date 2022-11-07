@@ -12,27 +12,22 @@ const NewComment = ({ postId, setComments, setNewComment }) => {
   const [image, setImage] = useState("");
 
   const addComment = () => {
-    CommentData()
-      .addComment(postId, comment)
-      .then((response) => {
-        handleUpload(postId, response.id).then(() => {
-          CommentData()
-            .getComments(postId)
-            .then((comments) => {
-              setComments(comments);
-              setComment("");
-              setNewComment(false);
-            });
-        });
-      });
-  };
-
-  const handleUpload = async (postId, commentId) => {
     const formData = new FormData();
     formData.append("file", image);
     formData.append("postId", postId);
-    formData.append("commentId", commentId);
-    await CommentData().uploadImage(formData);
+    formData.append("text", comment);
+
+    CommentData()
+      .addComment(formData)
+      .then(() => {
+        CommentData()
+          .getComments(postId)
+          .then((comments) => {
+            setComments(comments);
+            setComment("");
+            setNewComment(false);
+          });
+      });
   };
 
   return (

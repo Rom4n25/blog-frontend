@@ -18,14 +18,10 @@ const CommentData = () => {
     return response;
   }
 
-  async function addComment(postId, post) {
-    let response = await fetch("/comments/add/" + postId, {
+  async function addComment(formData) {
+    let response = await fetch("/comments/add", {
       method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text: post }),
+      body: formData,
     });
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
@@ -34,14 +30,7 @@ const CommentData = () => {
     return await response.json();
   }
 
-  async function uploadImage(image) {
-    await fetch("/comments/img/add", {
-      method: "post",
-      body: image,
-    });
-  }
-
-  return { getComments, addComment, uploadImage };
+  return { getComments, addComment };
 };
 
 export default CommentData;

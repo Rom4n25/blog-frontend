@@ -12,25 +12,20 @@ const NewPost = ({ setPosts }) => {
   const [image, setImage] = useState("");
 
   const addPost = () => {
-    PostData()
-      .addPost(post)
-      .then((response) => {
-        handleUpload(response.id).then(() => {
-          PostData()
-            .getAllPosts(0)
-            .then((posts) => {
-              setPosts(posts);
-              setPost("");
-            });
-        });
-      });
-  };
-
-  const handleUpload = async (postId) => {
     const formData = new FormData();
     formData.append("file", image);
-    formData.append("id", postId);
-    await PostData().uploadImage(formData);
+    formData.append("text", post);
+
+    PostData()
+      .addPost(formData)
+      .then(() => {
+        PostData()
+          .getAllPosts(0)
+          .then((posts) => {
+            setPosts(posts);
+            setPost("");
+          });
+      });
   };
 
   return (

@@ -30,14 +30,10 @@ const PostData = () => {
     return response;
   }
 
-  async function addPost(post) {
+  async function addPost(formData) {
     let response = await fetch("/posts/add", {
       method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text: post }),
+      body: formData,
     });
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
@@ -46,13 +42,7 @@ const PostData = () => {
     return await response.json();
   }
 
-  async function uploadImage(image) {
-    await fetch("/posts/img/add", {
-      method: "post",
-      body: image,
-    });
-  }
-  return { getAllPosts, getAllPostsByUserId, addPost, uploadImage };
+  return { getAllPosts, getAllPostsByUserId, addPost };
 };
 
 export default PostData;
