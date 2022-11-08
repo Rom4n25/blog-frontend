@@ -20,6 +20,7 @@ const Comment = ({ text, author, created, img }) => {
       {img !== null ? (
         <StyledImgWrapper>
           <img
+            draggable="false"
             alt="img"
             src={`data:image/jpeg;base64,${img}`}
             width={300}

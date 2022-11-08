@@ -1,10 +1,10 @@
 import StyledMain from "../styles/StyledMain";
 import PostContainer from "./post/PostContainer";
 
-const Main = ({ userId }) => {
+const Main = ({ username }) => {
   return (
     <StyledMain>
-      <PostContainer userId={userId}></PostContainer>
+      <PostContainer username={username}></PostContainer>
     </StyledMain>
   );
 };

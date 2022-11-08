@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import UserData from "../services/UserData";
 import Form from "../components/Form";
 import StyledButton from "../styles/StyledButton";
@@ -6,9 +5,13 @@ import StyledHeader from "../styles/StyledHeader";
 
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setUserId, setAuthentication }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({
+  setAuthentication,
+  username,
+  setUsername,
+  password,
+  setPassword,
+}) => {
   const navigate = useNavigate();
 
   const submitForm = (e) => {

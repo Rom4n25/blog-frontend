@@ -8,7 +8,7 @@ import NewComment from "../comment/NewComment";
 import PostHeader from "./PostHeader";
 import StyledImgWrapper from "../../styles/StyledImgWrapper";
 
-const Post = ({ id, text, author, comment, created, userId, img }) => {
+const Post = ({ id, text, author, comment, created, username, img }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(comment);
   const [newComment, setNewComment] = useState(false);
@@ -29,12 +29,13 @@ const Post = ({ id, text, author, comment, created, userId, img }) => {
           addComment={addComment}
           author={author}
           created={created}
-          userId={userId}
+          username={username}
         ></PostHeader>
         <StyledPostText>{text}</StyledPostText>
         {img !== null ? (
           <StyledImgWrapper>
             <img
+              draggable="false"
               alt="img"
               src={`data:image/jpeg;base64,${img}`}
               width={300}

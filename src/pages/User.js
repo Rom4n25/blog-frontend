@@ -75,6 +75,7 @@ const User = () => {
               created={post.created}
               author={post.user.username}
               comment={post.comment}
+              username={username}
               img={post.img}
             ></Post>
           ))}
