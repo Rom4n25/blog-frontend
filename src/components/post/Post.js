@@ -8,7 +8,18 @@ import NewComment from "../comment/NewComment";
 import PostHeader from "./PostHeader";
 import StyledImgWrapper from "../../styles/StyledImgWrapper";
 
-const Post = ({ id, text, author, comment, created, username, img }) => {
+const Post = ({
+  id,
+  text,
+  author,
+  comment,
+  created,
+  username,
+  img,
+  setEditPost,
+  setEditPostText,
+  setEditPostId,
+}) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(comment);
   const [newComment, setNewComment] = useState(false);
@@ -22,6 +33,13 @@ const Post = ({ id, text, author, comment, created, username, img }) => {
     setShowComments(true);
   };
 
+  const editPostEffect = () => {
+    setEditPostText(text);
+    setEditPostId(id);
+    setEditPost(true);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       <StyledPost>
@@ -30,6 +48,7 @@ const Post = ({ id, text, author, comment, created, username, img }) => {
           author={author}
           created={created}
           username={username}
+          editPostEffect={editPostEffect}
         ></PostHeader>
         <StyledPostText>{text}</StyledPostText>
         {img !== null ? (

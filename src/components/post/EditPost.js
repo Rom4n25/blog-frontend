@@ -1,35 +1,40 @@
 import StyledNewPost from "../../styles/Post/StyledNewPost";
-import PostData from "../../services/PostData";
-import StyledTransparentButton from "../../styles/StyledTransparentButton";
+import StyledPostFooter from "../../styles/Post/StyledPostFooter";
 import StyledTextArea from "../../styles/StyledTextArea";
+import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
 import StyledInputFile from "../../styles/StyledInputFile";
 import IconImg from "../../styles/IconImg";
-import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
-import StyledPostFooter from "../../styles/Post/StyledPostFooter";
 import IconSend from "../../styles/IconSend";
+import StyledTransparentButton from "../../styles/StyledTransparentButton";
+import PostData from "../../services/PostData";
 import StyledImgName from "../../styles/StyledImgName";
 import { useState } from "react";
 
-const NewPost = ({ setPosts }) => {
-  const [post, setPost] = useState("");
-  const [img, setImg] = useState(null);
-  const [imgName, setImgName] = useState("");
-
+const EditPost = ({
+  text,
+  setText,
+  img,
+  setImg,
+  id,
+  setPosts,
+  setEditPost,
+}) => {
+  const [imgName, setImgName] = useState("uploaded image");
   const addPost = () => {
     const formData = new FormData();
     if (img) {
       formData.append("file", img);
     }
-    formData.append("text", post);
+    formData.append("text", text);
 
     PostData()
-      .addPost(formData)
+      .editPostById(formData, id)
       .then(() => {
         PostData()
           .getAllPosts(0)
           .then((posts) => {
             setPosts(posts);
-            setPost("");
+            setEditPost(false);
           });
       });
   };
@@ -39,8 +44,8 @@ const NewPost = ({ setPosts }) => {
       <StyledNewPost>
         <StyledTextArea
           id="textArea"
-          value={post}
-          onChange={(e) => setPost(e.target.value)}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           rows={5}
           cols={60}
           placeholder="Say something..."
@@ -61,6 +66,7 @@ const NewPost = ({ setPosts }) => {
             ></StyledInputFile>
             <StyledImgName>{imgName}</StyledImgName>
           </StyledInputFileWrapper>
+
           <StyledTransparentButton onClick={addPost}>
             <IconSend />
           </StyledTransparentButton>
@@ -70,4 +76,4 @@ const NewPost = ({ setPosts }) => {
   );
 };
 
-export default NewPost;
+export default EditPost;

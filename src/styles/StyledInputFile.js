@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 const StyledInputFile = styled.input.attrs({ type: "file" })`
-  color: transparent;
   position: absolute;
+  color: #b2b2b2;
   cursor: pointer;
   width: 25px;
-  z-index: 1;
   &:before {
     display: inline-block;
     border-radius: 3px;
@@ -15,10 +14,10 @@ const StyledInputFile = styled.input.attrs({ type: "file" })`
     cursor: pointer;
     font-size: 10pt;
     color: white;
-    z-index: 1;
   }
 
   &::file-selector-button {
+    width: 25px;
     visibility: hidden;
   }
 

@@ -8,9 +8,6 @@ const IconImg = styled(myIcon)`
   height: 25px;
   fill: #00abb3;
   cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-  }
 `;
 
 export default IconImg;

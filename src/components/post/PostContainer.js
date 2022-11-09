@@ -3,10 +3,15 @@ import Post from "./Post";
 import postData from "../../services/PostData";
 import { useEffect, useState } from "react";
 import NewPost from "./NewPost";
+import EditPost from "./EditPost";
 
 const PostContainer = ({ username }) => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
+  const [editPost, setEditPost] = useState(false);
+  const [editPostText, setEditPostText] = useState("");
+  const [editPostImg, setEditPostImg] = useState(null);
+  const [editPostId, setEditPostId] = useState(null);
 
   useEffect(() => {
     postData()
@@ -36,7 +41,20 @@ const PostContainer = ({ username }) => {
 
   return (
     <StyledPostContainer key={"postContainer"} id="postContainer">
-      <NewPost setPosts={setPosts}></NewPost>
+      {editPost === true ? (
+        <EditPost
+          setText={setEditPostText}
+          text={editPostText}
+          setImg={setEditPostImg}
+          img={editPostImg}
+          id={editPostId}
+          setPosts={setPosts}
+          setEditPost={setEditPost}
+        ></EditPost>
+      ) : (
+        <NewPost setPosts={setPosts}></NewPost>
+      )}
+
       {posts.map((post) => (
         <Post
           key={post.id}
@@ -47,6 +65,9 @@ const PostContainer = ({ username }) => {
           comment={post.comment}
           username={username}
           img={post.img}
+          setEditPost={setEditPost}
+          setEditPostText={setEditPostText}
+          setEditPostId={setEditPostId}
         ></Post>
       ))}
     </StyledPostContainer>

@@ -7,6 +7,7 @@ import Post from "../components/post/Post";
 import PostData from "../services/PostData";
 import UserData from "../services/UserData";
 import StyledButton from "../styles/StyledButton";
+import EditPost from "../components/post/EditPost";
 
 const User = () => {
   const initialMount = useRef(true);
@@ -14,6 +15,10 @@ const User = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [userId, setUserId] = useState("");
+  const [editPost, setEditPost] = useState(false);
+  const [editPostText, setEditPostText] = useState("");
+  const [editPostImg, setEditPostImg] = useState(null);
+  const [editPostId, setEditPostId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,6 +71,19 @@ const User = () => {
         </StyledButton>
       </StyledHeader>
       <StyledMain>
+        {editPost === true ? (
+          <EditPost
+            setText={setEditPostText}
+            text={editPostText}
+            setImg={setEditPostImg}
+            img={editPostImg}
+            id={editPostId}
+            setPosts={setPosts}
+            setEditPost={setEditPost}
+          ></EditPost>
+        ) : (
+          <></>
+        )}
         <StyledPostContainer key={"postContainer"} id="postContainer">
           {posts.map((post) => (
             <Post
@@ -77,6 +95,9 @@ const User = () => {
               comment={post.comment}
               username={username}
               img={post.img}
+              setEditPost={setEditPost}
+              setEditPostText={setEditPostText}
+              setEditPostId={setEditPostId}
             ></Post>
           ))}
         </StyledPostContainer>

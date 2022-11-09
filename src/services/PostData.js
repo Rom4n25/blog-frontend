@@ -42,7 +42,18 @@ const PostData = () => {
     return await response.json();
   }
 
-  return { getAllPosts, getAllPostsByUserId, addPost };
+  async function editPostById(formData, id) {
+    let response = await fetch("/posts/edit/" + id, {
+      method: "post",
+      body: formData,
+    });
+    if (response.status === 401) {
+      sessionStorage.removeItem("auth");
+      window.location.href = loginPageURL;
+    }
+  }
+
+  return { getAllPosts, getAllPostsByUserId, addPost, editPostById };
 };
 
 export default PostData;

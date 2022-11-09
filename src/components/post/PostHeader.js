@@ -4,7 +4,13 @@ import StyledPostDate from "../../styles/Post/StyledPostDate";
 import StyledCommentButton from "../../styles/Comment/StyledCommentButton";
 import { Link } from "react-router-dom";
 
-const PostHeader = ({ created, author, addComment, username }) => {
+const PostHeader = ({
+  created,
+  author,
+  addComment,
+  username,
+  editPostEffect,
+}) => {
   return (
     <StyledPostHeader>
       <div>
@@ -17,7 +23,7 @@ const PostHeader = ({ created, author, addComment, username }) => {
       </div>
       <div>
         {username === author ? (
-          <StyledCommentButton onClick={() => console.log("edit")}>
+          <StyledCommentButton onClick={() => editPostEffect()}>
             edit &#9998;
           </StyledCommentButton>
         ) : (
