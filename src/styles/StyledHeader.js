@@ -6,7 +6,7 @@ const StyledHeader = styled.header`
   background-color: #00abb3;
   height: 65px;
   border-bottom: 1px solid #00abb3;
-  justify-content: right;
+  justify-content: space-between;
   flex-shrink: 0;
   position: fixed;
   top: 0;
