@@ -8,6 +8,8 @@ import PostData from "../services/PostData";
 import UserData from "../services/UserData";
 import StyledButton from "../styles/StyledButton";
 import EditPost from "../components/post/EditPost";
+import IconLogo from "../styles/IconLogo";
+import StyledHeaderTitle from "../styles/StyledHeaderTtitle";
 
 const User = () => {
   const initialMount = useRef(true);
@@ -62,6 +64,9 @@ const User = () => {
   return (
     <>
       <StyledHeader>
+        <div style={{ display: "flex" }}>
+          <IconLogo /> <StyledHeaderTitle>Mikroblog</StyledHeaderTitle>
+        </div>
         <StyledButton
           onClick={() => {
             navigate("/");

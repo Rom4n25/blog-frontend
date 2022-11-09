@@ -4,6 +4,8 @@ import StyledHeader from "../styles/StyledHeader";
 import StyledButton from "../styles/StyledButton";
 import UserData from "../services/UserData";
 import { useNavigate } from "react-router-dom";
+import IconLogo from "../styles/IconLogo";
+import StyledHeaderTitle from "../styles/StyledHeaderTtitle";
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
@@ -18,6 +20,9 @@ const CreateUser = () => {
   return (
     <>
       <StyledHeader>
+        <div style={{ display: "flex" }}>
+          <IconLogo /> <StyledHeaderTitle>Mikroblog</StyledHeaderTitle>
+        </div>
         <StyledButton onClick={() => navigate("/")}>Back to login</StyledButton>
       </StyledHeader>
       <Form

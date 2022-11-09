@@ -2,6 +2,8 @@ import UserData from "../services/UserData";
 import Form from "../components/Form";
 import StyledButton from "../styles/StyledButton";
 import StyledHeader from "../styles/StyledHeader";
+import IconLogo from "../styles/IconLogo";
+import StyledHeaderTitle from "../styles/StyledHeaderTtitle";
 
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +28,9 @@ const Login = ({
   return (
     <>
       <StyledHeader>
+        <div style={{ display: "flex" }}>
+          <IconLogo /> <StyledHeaderTitle>Mikroblog</StyledHeaderTitle>
+        </div>
         <StyledButton onClick={() => navigate("/create-account")}>
           Create account
         </StyledButton>
