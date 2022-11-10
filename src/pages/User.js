@@ -9,7 +9,7 @@ import UserData from "../services/UserData";
 import StyledButton from "../styles/StyledButton";
 import EditPost from "../components/post/EditPost";
 import IconLogo from "../styles/IconLogo";
-import StyledHeaderTitle from "../styles/StyledHeaderTtitle";
+import StyledHeaderTitle from "../styles/StyledHeaderTitle";
 
 const User = () => {
   const initialMount = useRef(true);

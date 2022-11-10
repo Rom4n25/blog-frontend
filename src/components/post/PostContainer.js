@@ -68,6 +68,7 @@ const PostContainer = ({ username }) => {
           setEditPost={setEditPost}
           setEditPostText={setEditPostText}
           setEditPostId={setEditPostId}
+          setPosts={setPosts}
         ></Post>
       ))}
     </StyledPostContainer>

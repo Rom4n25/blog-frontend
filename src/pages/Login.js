@@ -3,7 +3,7 @@ import Form from "../components/Form";
 import StyledButton from "../styles/StyledButton";
 import StyledHeader from "../styles/StyledHeader";
 import IconLogo from "../styles/IconLogo";
-import StyledHeaderTitle from "../styles/StyledHeaderTtitle";
+import StyledHeaderTitle from "../styles/StyledHeaderTitle";
 
 import { useNavigate } from "react-router-dom";
 

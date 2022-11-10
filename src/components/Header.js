@@ -2,7 +2,7 @@ import StyledHeader from "../styles/StyledHeader";
 import StyledButton from "../styles/StyledButton";
 import UserData from "../services/UserData";
 import IconLogo from "../styles/IconLogo";
-import StyledHeaderTitle from "../styles/StyledHeaderTtitle";
+import StyledHeaderTitle from "../styles/StyledHeaderTitle";
 
 const Header = ({ setAuthentication }) => {
   return (

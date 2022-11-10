@@ -30,7 +30,18 @@ const CommentData = () => {
     return await response.json();
   }
 
-  return { getComments, addComment };
+  async function editCommentById(formData, id) {
+    let response = await fetch("/comments/edit/" + id, {
+      method: "post",
+      body: formData,
+    });
+    if (response.status === 401) {
+      sessionStorage.removeItem("auth");
+      window.location.href = loginPageURL;
+    }
+  }
+
+  return { getComments, addComment, editCommentById };
 };
 
 export default CommentData;

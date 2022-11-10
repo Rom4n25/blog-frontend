@@ -7,6 +7,7 @@ import StyledCommentContainer from "../../styles/Comment/StyledCommentContainer"
 import NewComment from "../comment/NewComment";
 import PostHeader from "./PostHeader";
 import StyledImgWrapper from "../../styles/StyledImgWrapper";
+import EditComment from "../comment/EditComment";
 
 const Post = ({
   id,
@@ -19,10 +20,15 @@ const Post = ({
   setEditPost,
   setEditPostText,
   setEditPostId,
+  setPosts,
 }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(comment);
   const [newComment, setNewComment] = useState(false);
+  const [editComment, setEditComment] = useState(false);
+  const [editCommentText, setEditCommentText] = useState("");
+  const [editCommentId, setEditCommentId] = useState(null);
+  const [editCommentImg, setEditCommentImg] = useState(null);
 
   const displayComments = () => {
     setShowComments(!showComments);
@@ -77,10 +83,15 @@ const Post = ({
           comments.map((comment) => (
             <Comment
               key={comment.id}
+              id={comment.id}
               text={comment.text}
               author={comment.user.username}
               created={comment.created}
               img={comment.img}
+              username={username}
+              setEditComment={setEditComment}
+              setEditCommentText={setEditCommentText}
+              setEditCommentId={setEditCommentId}
             ></Comment>
           ))
         ) : (
@@ -94,6 +105,21 @@ const Post = ({
           setComments={setComments}
           setNewComment={setNewComment}
         ></NewComment>
+      ) : (
+        <></>
+      )}
+
+      {editComment === true ? (
+        <EditComment
+          commentId={editCommentId}
+          postId={id}
+          setComments={setComments}
+          setEditComment={setEditComment}
+          setText={setEditCommentText}
+          text={editCommentText}
+          setImg={setEditCommentImg}
+          img={editCommentImg}
+        ></EditComment>
       ) : (
         <></>
       )}

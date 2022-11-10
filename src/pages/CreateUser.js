@@ -5,7 +5,7 @@ import StyledButton from "../styles/StyledButton";
 import UserData from "../services/UserData";
 import { useNavigate } from "react-router-dom";
 import IconLogo from "../styles/IconLogo";
-import StyledHeaderTitle from "../styles/StyledHeaderTtitle";
+import StyledHeaderTitle from "../styles/StyledHeaderTitle";
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
