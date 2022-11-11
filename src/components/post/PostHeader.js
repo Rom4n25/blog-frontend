@@ -5,24 +5,24 @@ import StyledCommentButton from "../../styles/Comment/StyledCommentButton";
 import { Link } from "react-router-dom";
 
 const PostHeader = ({
-  created,
+  dateCreated,
   author,
   addComment,
-  username,
+  loggedUser,
   editPostEffect,
 }) => {
   return (
     <StyledPostHeader>
       <div>
         <StyledPostAuthor>
-          <Link id="user_link" to={"/user/" + author} state={{ username }}>
+          <Link id="user_link" to={"/user/" + author} state={{ loggedUser }}>
             @{author + " "}
           </Link>
         </StyledPostAuthor>
-        <StyledPostDate>{new Date(created).toUTCString()}</StyledPostDate>
+        <StyledPostDate>{new Date(dateCreated).toUTCString()}</StyledPostDate>
       </div>
       <div>
-        {username === author ? (
+        {loggedUser === author ? (
           <StyledCommentButton onClick={() => editPostEffect()}>
             edit &#9998;
           </StyledCommentButton>

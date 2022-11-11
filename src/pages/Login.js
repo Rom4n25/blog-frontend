@@ -1,10 +1,8 @@
 import UserData from "../services/UserData";
 import Form from "../components/Form";
+import HeaderLogo from "../components/header/HeaderLogo";
 import StyledButton from "../styles/StyledButton";
-import StyledHeader from "../styles/StyledHeader";
-import IconLogo from "../styles/IconLogo";
-import StyledHeaderTitle from "../styles/StyledHeaderTitle";
-
+import StyledHeader from "../styles/Header/StyledHeader";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({
@@ -25,25 +23,25 @@ const Login = ({
       });
   };
 
+  const formProps = {
+    formName: "Mikroblog",
+    btnName: "Login",
+    onSubmit: submitForm,
+    username,
+    setUsername,
+    password,
+    setPassword,
+  };
+
   return (
     <>
       <StyledHeader>
-        <div style={{ display: "flex" }}>
-          <IconLogo /> <StyledHeaderTitle>Mikroblog</StyledHeaderTitle>
-        </div>
+        <HeaderLogo />
         <StyledButton onClick={() => navigate("/create-account")}>
           Create account
         </StyledButton>
       </StyledHeader>
-      <Form
-        formName={"Mikroblog"}
-        btnName={"Login"}
-        onSubmit={submitForm}
-        username={username}
-        setUsername={setUsername}
-        password={password}
-        setPassword={setPassword}
-      ></Form>
+      <Form {...formProps}></Form>
     </>
   );
 };

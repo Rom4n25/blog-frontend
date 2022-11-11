@@ -9,6 +9,7 @@ const StyledNewPost = styled.div`
   padding: 20px;
   padding-bottom: 5px;
   border-radius: 4px;
+  margin-top: 10px;
   margin-bottom: 10px;
 `;
 

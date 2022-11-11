@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CommentData from "../../services/CommentData";
 import StyledTransparentButton from "../../styles/StyledTransparentButton";
 import StyledTextArea from "../../styles/StyledTextArea";
@@ -9,25 +9,34 @@ import StyledInputFile from "../../styles/StyledInputFile";
 import StyledCommentFooter from "../../styles/Comment/StyledCommentFooter";
 import IconSend from "../../styles/IconSend";
 import StyledImgName from "../../styles/StyledImgName";
+import IconRemove from "../../styles/IconRemove";
 
 const EditComment = ({
   commentId,
+  text,
   setComments,
   setEditComment,
-  setText,
-  text,
-  setImg,
-  img,
   postId,
+  image,
 }) => {
-  const [imgName, setImgName] = useState("uploaded image");
+  const [newText, setNewText] = useState(text);
+  const [newImage, setNewImage] = useState(null);
+  const [imageName, setImageName] = useState("");
+  const [removeIcon, setRemoveIcon] = useState(image);
+
+  useEffect(() => {
+    if (image) {
+      setImageName("uploaded image");
+    }
+  }, [image]);
 
   const addComment = () => {
     const formData = new FormData();
-    if (img) {
-      formData.append("file", img);
+
+    if (newImage) {
+      formData.append("file", newImage);
     }
-    formData.append("text", text);
+    formData.append("text", newText);
     formData.append("commentId", commentId);
 
     CommentData()
@@ -46,8 +55,8 @@ const EditComment = ({
     <>
       <StyledNewComment>
         <StyledTextArea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
           rows={5}
           cols={60}
           placeholder="Say something..."
@@ -62,11 +71,20 @@ const EditComment = ({
               title="upload image"
               type={"file"}
               onChange={(e) => {
-                setImg(e.target.files[0]);
-                setImgName(e.target.files[0].name);
+                setNewImage(e.target.files[0]);
+                setImageName(e.target.files[0].name);
               }}
             ></StyledInputFile>
-            <StyledImgName>{imgName}</StyledImgName>
+            <StyledImgName>{imageName}</StyledImgName>
+            <StyledTransparentButton
+              onClick={() => {
+                setNewImage(new File([], ""));
+                setImageName("");
+                setRemoveIcon(false);
+              }}
+            >
+              {removeIcon ? <IconRemove /> : <></>}
+            </StyledTransparentButton>
           </StyledInputFileWrapper>
           <StyledTransparentButton onClick={addComment}>
             <IconSend />

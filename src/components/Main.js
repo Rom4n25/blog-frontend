@@ -1,10 +1,23 @@
 import StyledMain from "../styles/StyledMain";
 import PostContainer from "./post/PostContainer";
+import PostData from "../services/PostData";
+import NewPost from "./post/NewPost";
+import { useState } from "react";
 
-const Main = ({ username }) => {
+const Main = ({ loggedUser }) => {
+  const [posts, setPosts] = useState([]);
+  const loadPosts = async (page) => {
+    return await PostData().getAllPosts(page);
+  };
   return (
     <StyledMain>
-      <PostContainer username={username}></PostContainer>
+      <NewPost setPosts={setPosts}></NewPost>
+      <PostContainer
+        loggedUser={loggedUser}
+        loadPosts={loadPosts}
+        posts={posts}
+        setPosts={setPosts}
+      ></PostContainer>
     </StyledMain>
   );
 };

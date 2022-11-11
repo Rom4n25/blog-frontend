@@ -11,7 +11,7 @@ import StyledImgName from "../../styles/StyledImgName";
 import { useState } from "react";
 
 const NewPost = ({ setPosts }) => {
-  const [post, setPost] = useState("");
+  const [text, setText] = useState("");
   const [img, setImg] = useState(null);
   const [imgName, setImgName] = useState("");
 
@@ -20,7 +20,7 @@ const NewPost = ({ setPosts }) => {
     if (img) {
       formData.append("file", img);
     }
-    formData.append("text", post);
+    formData.append("text", text);
 
     PostData()
       .addPost(formData)
@@ -29,7 +29,7 @@ const NewPost = ({ setPosts }) => {
           .getAllPosts(0)
           .then((posts) => {
             setPosts(posts);
-            setPost("");
+            setText("");
           });
       });
   };
@@ -39,8 +39,8 @@ const NewPost = ({ setPosts }) => {
       <StyledNewPost>
         <StyledTextArea
           id="textArea"
-          value={post}
-          onChange={(e) => setPost(e.target.value)}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           rows={5}
           cols={60}
           placeholder="Say something..."

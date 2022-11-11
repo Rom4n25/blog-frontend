@@ -8,33 +8,37 @@ import IconSend from "../../styles/IconSend";
 import StyledTransparentButton from "../../styles/StyledTransparentButton";
 import PostData from "../../services/PostData";
 import StyledImgName from "../../styles/StyledImgName";
-import { useState } from "react";
+import IconRemove from "../../styles/IconRemove";
+import { useEffect, useState } from "react";
 
-const EditPost = ({
-  text,
-  setText,
-  img,
-  setImg,
-  id,
-  setPosts,
-  setEditPost,
-}) => {
-  const [imgName, setImgName] = useState("uploaded image");
+const EditPost = ({ text, postId, setPosts, editPost, image }) => {
+  const [imageName, setImageName] = useState("");
+  const [removeIcon, setRemoveIcon] = useState(image);
+  const [newText, setNewText] = useState(text);
+  const [newImage, setNewImage] = useState(null);
+
+  useEffect(() => {
+    if (image) {
+      setImageName("uploaded image");
+    }
+  }, [image]);
+
   const addPost = () => {
     const formData = new FormData();
-    if (img) {
-      formData.append("file", img);
+
+    if (newImage) {
+      formData.append("file", newImage);
     }
-    formData.append("text", text);
+    formData.append("text", newText);
 
     PostData()
-      .editPostById(formData, id)
+      .editPostById(formData, postId)
       .then(() => {
         PostData()
           .getAllPosts(0)
           .then((posts) => {
             setPosts(posts);
-            setEditPost(false);
+            editPost(false);
           });
       });
   };
@@ -44,8 +48,8 @@ const EditPost = ({
       <StyledNewPost>
         <StyledTextArea
           id="textArea"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
           rows={5}
           cols={60}
           placeholder="Say something..."
@@ -60,13 +64,21 @@ const EditPost = ({
               title="upload image"
               type={"file"}
               onChange={(e) => {
-                setImg(e.target.files[0]);
-                setImgName(e.target.files[0].name);
+                setNewImage(e.target.files[0]);
+                setImageName(e.target.files[0].name);
               }}
             ></StyledInputFile>
-            <StyledImgName>{imgName}</StyledImgName>
+            <StyledImgName>{imageName}</StyledImgName>
+            <StyledTransparentButton
+              onClick={() => {
+                setNewImage(new File([], ""));
+                setImageName("");
+                setRemoveIcon(false);
+              }}
+            >
+              {removeIcon ? <IconRemove /> : <></>}
+            </StyledTransparentButton>
           </StyledInputFileWrapper>
-
           <StyledTransparentButton onClick={addPost}>
             <IconSend />
           </StyledTransparentButton>

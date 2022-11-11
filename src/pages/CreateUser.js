@@ -1,11 +1,10 @@
 import Form from "../components/Form";
-import { useState } from "react";
-import StyledHeader from "../styles/StyledHeader";
-import StyledButton from "../styles/StyledButton";
 import UserData from "../services/UserData";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import IconLogo from "../styles/IconLogo";
-import StyledHeaderTitle from "../styles/StyledHeaderTitle";
+import StyledHeader from "../styles/Header/StyledHeader";
+import StyledButton from "../styles/StyledButton";
+import HeaderLogo from "../components/header/HeaderLogo";
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
@@ -17,23 +16,23 @@ const CreateUser = () => {
     UserData().create(username, password).then(navigate("/"));
   };
 
+  const formProps = {
+    formName: "CreateAccount",
+    btnName: "Create",
+    onSubmit: submitForm,
+    username,
+    setUsername,
+    password,
+    setPassword,
+  };
+
   return (
     <>
       <StyledHeader>
-        <div style={{ display: "flex" }}>
-          <IconLogo /> <StyledHeaderTitle>Mikroblog</StyledHeaderTitle>
-        </div>
+        <HeaderLogo />
         <StyledButton onClick={() => navigate("/")}>Back to login</StyledButton>
       </StyledHeader>
-      <Form
-        formName={"Create account"}
-        btnName={"Create"}
-        onSubmit={submitForm}
-        username={username}
-        setUsername={setUsername}
-        password={password}
-        setPassword={setPassword}
-      ></Form>
+      <Form {...formProps}></Form>
     </>
   );
 };
