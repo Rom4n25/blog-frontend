@@ -8,7 +8,7 @@ const StyledComment = styled.div`
   padding: 20px;
   padding-left: 50px;
   padding-right: 50px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   border-radius: 4px;
 `;
 

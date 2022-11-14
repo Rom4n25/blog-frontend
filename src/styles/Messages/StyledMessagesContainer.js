@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const StyledCommentContainer = styled.div`
+const StyledMessagesContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export default StyledCommentContainer;
+export default StyledMessagesContainer;
