@@ -1,4 +1,4 @@
-import IconLogo from "../../styles/IconLogo";
+import IconLogo from "../../styles/Header/IconLogo";
 import StyledHeaderTitle from "../../styles/Header/StyledHeaderTitle";
 
 const HeaderLogo = () => {

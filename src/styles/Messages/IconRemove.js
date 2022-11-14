@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as myIcon } from "../svg/remove.svg";
+import { ReactComponent as myIcon } from "../../svg/remove.svg";
 
 const IconRemove = styled(myIcon)`
   width: 100%;

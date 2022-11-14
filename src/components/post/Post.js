@@ -3,11 +3,12 @@ import Comment from "../comment/Comment";
 import { useState } from "react";
 import StyledShowCommentsButton from "../../styles/Messages/Post/StyledShowCommentsButton";
 import StyledText from "../../styles/Messages/StyledText";
-import StyledCommentContainer from "../../styles/Messages/Comment/StyledCommentContainer";
+import StyledMessagesContainer from "../../styles/Messages/StyledMessagesContainer";
 import NewComment from "../comment/NewComment";
 import PostHeader from "./PostHeader";
-import StyledImgWrapper from "../../styles/StyledImgWrapper";
-import EditPost from "./EditPost";
+import StyledImgWrapper from "../../styles/Messages/StyledImgWrapper";
+import EditMessage from "../Message/EditMessage";
+import PostData from "../../services/PostData";
 
 const Post = ({
   id,
@@ -22,11 +23,33 @@ const Post = ({
   const [showComments, setShowComments] = useState(false);
   const [commentList, setCommentList] = useState(comments);
   const [newComment, setNewComment] = useState(false);
-  const [editPost, setEditPost] = useState(false);
+  const [shouldEdit, setShouldEdit] = useState(false);
+  const [editedText, setEditedText] = useState(text);
+  const [editedImage, setEditedImage] = useState(null);
 
   const addComment = () => {
     setNewComment(!newComment);
     setShowComments(true);
+  };
+
+  const editPost = () => {
+    const formData = new FormData();
+
+    if (editedImage) {
+      formData.append("file", editedImage);
+    }
+    formData.append("text", editedText);
+
+    PostData()
+      .editPostById(formData, id)
+      .then(() => {
+        PostData()
+          .getAllPosts(0)
+          .then((posts) => {
+            setPosts(posts);
+            setShouldEdit(false);
+          });
+      });
   };
 
   return (
@@ -37,7 +60,7 @@ const Post = ({
           author={author}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
-          editPostEffect={() => setEditPost(true)}
+          editPostEffect={() => setShouldEdit(true)}
         ></PostHeader>
         <StyledText>{text}</StyledText>
         {image !== null ? (
@@ -65,19 +88,19 @@ const Post = ({
         </StyledShowCommentsButton>
       </StyledPost>
 
-      {editPost === true ? (
-        <EditPost
-          text={text}
+      {shouldEdit === true ? (
+        <EditMessage
+          text={editedText}
+          setText={setEditedText}
           image={image}
-          postId={id}
-          setPosts={setPosts}
-          editPost={setEditPost}
-        ></EditPost>
+          setImage={setEditedImage}
+          submit={editPost}
+        ></EditMessage>
       ) : (
         <></>
       )}
 
-      <StyledCommentContainer>
+      <StyledMessagesContainer>
         {showComments === true ? (
           commentList.map((comment) => (
             <Comment
@@ -95,7 +118,7 @@ const Post = ({
         ) : (
           <></>
         )}
-      </StyledCommentContainer>
+      </StyledMessagesContainer>
 
       {newComment === true ? (
         <NewComment

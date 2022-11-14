@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import StyledPostContainer from "../../styles/Messages/Post/StyledPostContainer";
+import StyledMessagesContainer from "../../styles/Messages/StyledMessagesContainer";
 import Post from "./Post";
 
 const PostContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
@@ -31,7 +31,7 @@ const PostContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
   }, [page]);
 
   return (
-    <StyledPostContainer key={"postContainer"} id="postContainer">
+    <StyledMessagesContainer key={"postContainer"} id="postContainer">
       {posts.map((post) => (
         <Post
           key={post.id}
@@ -45,7 +45,7 @@ const PostContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
           setPosts={setPosts}
         ></Post>
       ))}
-    </StyledPostContainer>
+    </StyledMessagesContainer>
   );
 };
 export default PostContainer;

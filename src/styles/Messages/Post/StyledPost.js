@@ -6,12 +6,11 @@ const StyledPost = styled.div`
   align-items: center;
   background-color: #3c4048;
   width: 600px;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding: 20px;
+  padding-bottom: 0px;
   border-radius: 4px;
   margin-top: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 `;
 
 export default StyledPost;

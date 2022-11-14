@@ -1,4 +1,4 @@
-import StyledMain from "../styles/StyledMain";
+import StyledMain from "../styles/Main/StyledMain";
 import PostContainer from "./post/PostContainer";
 import PostData from "../services/PostData";
 import NewPost from "./post/NewPost";

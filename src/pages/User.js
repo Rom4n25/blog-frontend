@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import StyledHeader from "../styles/Header/StyledHeader";
-import StyledMain from "../styles/StyledMain";
+import StyledMain from "../styles/Main/StyledMain";
 import PostData from "../services/PostData";
 import UserData from "../services/UserData";
 import StyledButton from "../styles/StyledButton";

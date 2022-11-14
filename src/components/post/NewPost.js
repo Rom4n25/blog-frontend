@@ -1,13 +1,13 @@
-import StyledNewPost from "../../styles/Messages/Post/StyledNewPost";
+import StyledNewMessage from "../../styles/Messages/StyledNewMessage";
 import PostData from "../../services/PostData";
 import StyledTransparentButton from "../../styles/StyledTransparentButton";
-import StyledTextArea from "../../styles/StyledTextArea";
-import StyledInputFile from "../../styles/StyledInputFile";
-import IconImg from "../../styles/IconImg";
-import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
+import StyledTextArea from "../../styles/Messages/StyledTextArea";
+import StyledInputFile from "../../styles/Messages/StyledInputFile";
+import IconImg from "../../styles/Messages/IconImg";
+import StyledInputFileWrapper from "../../styles/Messages/StyledInputFileWrapper";
 import StyledFooter from "../../styles/Messages/StyledFooter";
-import IconSend from "../../styles/IconSend";
-import StyledImgName from "../../styles/StyledImgName";
+import IconSend from "../../styles/Messages/IconSend";
+import StyledImgName from "../../styles/Messages/StyledImgName";
 import { useState } from "react";
 
 const NewPost = ({ setPosts }) => {
@@ -36,7 +36,7 @@ const NewPost = ({ setPosts }) => {
 
   return (
     <>
-      <StyledNewPost>
+      <StyledNewMessage>
         <StyledTextArea
           id="textArea"
           value={text}
@@ -65,7 +65,7 @@ const NewPost = ({ setPosts }) => {
             <IconSend />
           </StyledTransparentButton>
         </StyledFooter>
-      </StyledNewPost>
+      </StyledNewMessage>
     </>
   );
 };

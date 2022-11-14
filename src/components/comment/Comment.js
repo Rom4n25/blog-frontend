@@ -3,10 +3,11 @@ import StyledAuthor from "../../styles/Messages/StyledAuthor";
 import StyledDate from "../../styles/Messages/StyledDate";
 import StyledHeader from "../../styles/Messages/StyledHeader";
 import StyledText from "../../styles/Messages/StyledText";
-import StyledImgWrapper from "../../styles/StyledImgWrapper";
+import StyledImgWrapper from "../../styles/Messages/StyledImgWrapper";
 import StyledHeaderButton from "../../styles/Messages/StyledHeaderButton";
-import EditComment from "./EditComment";
+import EditMessage from "../Message/EditMessage";
 import StyledAuthorDateWrapper from "../../styles/Messages/StyledAuthorDateWrapper";
+import CommentData from "../../services/CommentData";
 import { useState } from "react";
 
 const Comment = ({
@@ -19,10 +20,33 @@ const Comment = ({
   setCommentList,
   postId,
 }) => {
-  const [editComment, setEditComment] = useState(false);
+  const [shouldEdit, setShouldEdit] = useState(false);
+  const [editedText, setEditedText] = useState(text);
+  const [editedImage, setEditedImage] = useState(null);
+
+  const editComment = () => {
+    const formData = new FormData();
+
+    if (editedImage) {
+      formData.append("file", editedImage);
+    }
+    formData.append("text", editedText);
+    formData.append("commentId", id);
+
+    CommentData()
+      .editCommentById(formData, id)
+      .then(() => {
+        CommentData()
+          .getComments(postId)
+          .then((comments) => {
+            setCommentList(comments);
+            setShouldEdit(false);
+          });
+      });
+  };
 
   const editCommentEffect = () => {
-    setEditComment(true);
+    setShouldEdit(true);
   };
 
   return (
@@ -34,7 +58,7 @@ const Comment = ({
             <StyledDate>{new Date(created).toUTCString()}</StyledDate>
           </StyledAuthorDateWrapper>
           {loggedUser === author ? (
-            <StyledHeaderButton onClick={() => editCommentEffect()}>
+            <StyledHeaderButton opacity onClick={() => editCommentEffect()}>
               edit &#9998;
             </StyledHeaderButton>
           ) : (
@@ -55,15 +79,14 @@ const Comment = ({
           <></>
         )}
       </StyledComment>
-      {editComment === true ? (
-        <EditComment
-          commentId={id}
-          postId={postId}
-          setComments={setCommentList}
-          setEditComment={setEditComment}
-          text={text}
+      {shouldEdit === true ? (
+        <EditMessage
+          text={editedText}
+          setText={setEditedText}
           image={image}
-        ></EditComment>
+          setImage={setEditedImage}
+          submit={editComment}
+        ></EditMessage>
       ) : (
         <></>
       )}

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as myIcon } from "../svg/image.svg";
+import { ReactComponent as myIcon } from "../../svg/image.svg";
 
 const IconImg = styled(myIcon)`
   position: absolute;

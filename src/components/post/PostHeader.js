@@ -24,13 +24,13 @@ const PostHeader = ({
       </StyledAuthorDateWrapper>
       <div style={{ display: "flex" }}>
         {loggedUser === author ? (
-          <StyledHeaderButton onClick={() => editPostEffect()}>
+          <StyledHeaderButton opacity onClick={() => editPostEffect()}>
             edit &#9998;
           </StyledHeaderButton>
         ) : (
           <></>
         )}
-        <StyledHeaderButton onClick={addComment}>
+        <StyledHeaderButton primary onClick={addComment}>
           reply &#8631;
         </StyledHeaderButton>
       </div>

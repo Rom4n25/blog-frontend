@@ -9,6 +9,7 @@ const StyledComment = styled.div`
   padding-left: 50px;
   padding-right: 50px;
   margin-bottom: 3px;
+  border-radius: 4px;
 `;
 
 export default StyledComment;

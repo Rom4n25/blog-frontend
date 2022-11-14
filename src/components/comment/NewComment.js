@@ -1,13 +1,13 @@
 import { useState } from "react";
 import CommentData from "../../services/CommentData";
 import StyledTransparentButton from "../../styles/StyledTransparentButton";
-import StyledTextArea from "../../styles/StyledTextArea";
-import StyledNewComment from "../../styles/Messages/Comment/StyledNewComment";
-import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
-import IconImg from "../../styles/IconImg";
-import StyledInputFile from "../../styles/StyledInputFile";
+import StyledTextArea from "../../styles/Messages/StyledTextArea";
+import StyledNewMessage from "../../styles/Messages/StyledNewMessage";
+import StyledInputFileWrapper from "../../styles/Messages/StyledInputFileWrapper";
+import IconImg from "../../styles/Messages/IconImg";
+import StyledInputFile from "../../styles/Messages/StyledInputFile";
 import StyledFooter from "../../styles/Messages/StyledFooter";
-import IconSend from "../../styles/IconSend";
+import IconSend from "../../styles/Messages/IconSend";
 
 const NewComment = ({ postId, setComments, setNewComment }) => {
   const [comment, setComment] = useState("");
@@ -36,7 +36,7 @@ const NewComment = ({ postId, setComments, setNewComment }) => {
 
   return (
     <>
-      <StyledNewComment>
+      <StyledNewMessage>
         <StyledTextArea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
@@ -60,7 +60,7 @@ const NewComment = ({ postId, setComments, setNewComment }) => {
             <IconSend />
           </StyledTransparentButton>
         </StyledFooter>
-      </StyledNewComment>
+      </StyledNewMessage>
     </>
   );
 };
