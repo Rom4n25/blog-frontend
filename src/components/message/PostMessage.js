@@ -79,11 +79,11 @@ const PostMessage = ({
     <>
       <StyledPost>
         <Header
-          addComment={() => setNewComment(true)}
+          addComment={() => setNewComment(!newComment)}
           author={author}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
-          editPostEffect={() => setShouldEdit(true)}
+          editPostEffect={() => setShouldEdit(!shouldEdit)}
         ></Header>
         <StyledText>{text}</StyledText>
         {image !== null ? (
@@ -101,10 +101,16 @@ const PostMessage = ({
 
         <StyledShowCommentsButton
           value={showComments}
-          onClick={() => setShowComments(!showComments)}
+          onClick={() => {
+            setShowComments(!showComments);
+          }}
         >
           {comments.length > 0 ? (
-            <p>show comments ({comments.length})&#8628;</p>
+            <p>
+              {showComments
+                ? "hide comments (" + comments.length + ")"
+                : "show comments (" + comments.length + ")"}
+            </p>
           ) : (
             <></>
           )}
@@ -136,6 +142,7 @@ const PostMessage = ({
               loggedUser={loggedUser}
               setComments={setCommentList}
               postId={id}
+              newComment={newComment}
               setNewComment={setNewComment}
             ></CommentMessage>
           ))

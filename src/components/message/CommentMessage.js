@@ -14,6 +14,7 @@ const CommentMessage = ({
   setComments,
   loggedUser,
   postId,
+  newComment,
   setNewComment,
 }) => {
   const [shouldEdit, setShouldEdit] = useState(false);
@@ -45,11 +46,11 @@ const CommentMessage = ({
     <>
       <StyledComment>
         <Header
-          addComment={() => setNewComment(true)}
+          addComment={() => setNewComment(!newComment)}
           author={author}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
-          editPostEffect={() => setShouldEdit(true)}
+          editPostEffect={() => setShouldEdit(!shouldEdit)}
         ></Header>
 
         <StyledText>{text}</StyledText>
