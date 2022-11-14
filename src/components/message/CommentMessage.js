@@ -1,24 +1,20 @@
 import StyledComment from "../../styles/Messages/Comment/StyledComment";
-import StyledAuthor from "../../styles/Messages/StyledAuthor";
-import StyledDate from "../../styles/Messages/StyledDate";
-import StyledHeader from "../../styles/Messages/StyledHeader";
 import StyledText from "../../styles/Messages/StyledText";
 import StyledImgWrapper from "../../styles/Messages/StyledImgWrapper";
-import StyledHeaderButton from "../../styles/Messages/StyledHeaderButton";
-import EditMessage from "../Message/EditMessage";
-import StyledAuthorDateWrapper from "../../styles/Messages/StyledAuthorDateWrapper";
+import EditMessage from "./EditMessage";
 import CommentData from "../../services/CommentData";
 import { useState } from "react";
-
-const Comment = ({
-  text,
-  author,
-  created,
-  image,
-  loggedUser,
+import Header from "./Header";
+const CommentMessage = ({
   id,
-  setCommentList,
+  text,
+  image,
+  author,
+  dateCreated,
+  setComments,
+  loggedUser,
   postId,
+  setNewComment,
 }) => {
   const [shouldEdit, setShouldEdit] = useState(false);
   const [editedText, setEditedText] = useState(text);
@@ -39,32 +35,23 @@ const Comment = ({
         CommentData()
           .getComments(postId)
           .then((comments) => {
-            setCommentList(comments);
+            setComments(comments);
             setShouldEdit(false);
           });
       });
   };
 
-  const editCommentEffect = () => {
-    setShouldEdit(true);
-  };
-
   return (
     <>
       <StyledComment>
-        <StyledHeader>
-          <StyledAuthorDateWrapper>
-            <StyledAuthor>@{author + " "}</StyledAuthor>
-            <StyledDate>{new Date(created).toUTCString()}</StyledDate>
-          </StyledAuthorDateWrapper>
-          {loggedUser === author ? (
-            <StyledHeaderButton opacity onClick={() => editCommentEffect()}>
-              edit &#9998;
-            </StyledHeaderButton>
-          ) : (
-            <></>
-          )}
-        </StyledHeader>
+        <Header
+          addComment={() => setNewComment(true)}
+          author={author}
+          dateCreated={dateCreated}
+          loggedUser={loggedUser}
+          editPostEffect={() => setShouldEdit(true)}
+        ></Header>
+
         <StyledText>{text}</StyledText>
         {image !== null ? (
           <StyledImgWrapper>
@@ -94,4 +81,4 @@ const Comment = ({
   );
 };
 
-export default Comment;
+export default CommentMessage;

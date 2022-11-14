@@ -1,16 +1,17 @@
 import StyledPost from "../../styles/Messages/Post/StyledPost";
-import Comment from "../comment/Comment";
+import CommentMessage from "./CommentMessage";
 import { useState } from "react";
 import StyledShowCommentsButton from "../../styles/Messages/Post/StyledShowCommentsButton";
 import StyledText from "../../styles/Messages/StyledText";
 import StyledMessagesContainer from "../../styles/Messages/StyledMessagesContainer";
-import NewComment from "../comment/NewComment";
-import PostHeader from "./PostHeader";
+import NewMessage from "./NewMessage";
+import Header from "./Header";
 import StyledImgWrapper from "../../styles/Messages/StyledImgWrapper";
-import EditMessage from "../Message/EditMessage";
+import EditMessage from "./EditMessage";
 import PostData from "../../services/PostData";
+import CommentData from "../../services/CommentData";
 
-const Post = ({
+const PostMessage = ({
   id,
   text,
   image,
@@ -23,11 +24,33 @@ const Post = ({
   const [showComments, setShowComments] = useState(false);
   const [commentList, setCommentList] = useState(comments);
   const [newComment, setNewComment] = useState(false);
+  const [newCommentText, setNewCommentText] = useState("");
+  const [newCommentImage, setNewCommentImage] = useState(null);
   const [shouldEdit, setShouldEdit] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(null);
 
   const addComment = () => {
+    const formData = new FormData();
+    if (newCommentImage) {
+      formData.append("file", newCommentImage);
+    }
+    formData.append("text", newCommentText);
+    formData.append("postId", id);
+
+    CommentData()
+      .addComment(formData)
+      .then(() => {
+        CommentData()
+          .getComments(id)
+          .then((comments) => {
+            setCommentList(comments);
+            setNewCommentText("");
+            setNewCommentImage(null);
+            setNewComment(false);
+          });
+      });
+
     setNewComment(!newComment);
     setShowComments(true);
   };
@@ -55,13 +78,13 @@ const Post = ({
   return (
     <>
       <StyledPost>
-        <PostHeader
-          addComment={addComment}
+        <Header
+          addComment={() => setNewComment(true)}
           author={author}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
           editPostEffect={() => setShouldEdit(true)}
-        ></PostHeader>
+        ></Header>
         <StyledText>{text}</StyledText>
         {image !== null ? (
           <StyledImgWrapper>
@@ -103,17 +126,18 @@ const Post = ({
       <StyledMessagesContainer>
         {showComments === true ? (
           commentList.map((comment) => (
-            <Comment
+            <CommentMessage
               key={comment.id}
               id={comment.id}
               text={comment.text}
               author={comment.user.username}
-              created={comment.created}
+              dateCreated={comment.created}
               image={comment.img}
               loggedUser={loggedUser}
-              setCommentList={setCommentList}
+              setComments={setCommentList}
               postId={id}
-            ></Comment>
+              setNewComment={setNewComment}
+            ></CommentMessage>
           ))
         ) : (
           <></>
@@ -121,15 +145,16 @@ const Post = ({
       </StyledMessagesContainer>
 
       {newComment === true ? (
-        <NewComment
-          postId={id}
-          setComments={setCommentList}
-          setNewComment={setNewComment}
-        ></NewComment>
+        <NewMessage
+          text={newCommentText}
+          setText={setNewCommentText}
+          image={newCommentImage}
+          submit={addComment}
+        ></NewMessage>
       ) : (
         <></>
       )}
     </>
   );
 };
-export default Post;
+export default PostMessage;

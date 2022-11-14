@@ -1,5 +1,4 @@
 import StyledNewMessage from "../../styles/Messages/StyledNewMessage";
-import PostData from "../../services/PostData";
 import StyledTransparentButton from "../../styles/StyledTransparentButton";
 import StyledTextArea from "../../styles/Messages/StyledTextArea";
 import StyledInputFile from "../../styles/Messages/StyledInputFile";
@@ -10,29 +9,8 @@ import IconSend from "../../styles/Messages/IconSend";
 import StyledImgName from "../../styles/Messages/StyledImgName";
 import { useState } from "react";
 
-const NewPost = ({ setPosts }) => {
-  const [text, setText] = useState("");
-  const [img, setImg] = useState(null);
-  const [imgName, setImgName] = useState("");
-
-  const addPost = () => {
-    const formData = new FormData();
-    if (img) {
-      formData.append("file", img);
-    }
-    formData.append("text", text);
-
-    PostData()
-      .addPost(formData)
-      .then(() => {
-        PostData()
-          .getAllPosts(0)
-          .then((posts) => {
-            setPosts(posts);
-            setText("");
-          });
-      });
-  };
+const NewMessage = ({ text, setText, setImage, submit }) => {
+  const [imgName, setImageName] = useState("");
 
   return (
     <>
@@ -55,13 +33,18 @@ const NewPost = ({ setPosts }) => {
               title="upload image"
               type={"file"}
               onChange={(e) => {
-                setImg(e.target.files[0]);
-                setImgName(e.target.files[0].name);
+                setImage(e.target.files[0]);
+                setImageName(e.target.files[0].name);
               }}
             ></StyledInputFile>
             <StyledImgName>{imgName}</StyledImgName>
           </StyledInputFileWrapper>
-          <StyledTransparentButton onClick={addPost}>
+          <StyledTransparentButton
+            onClick={() => {
+              submit();
+              setImageName("");
+            }}
+          >
             <IconSend />
           </StyledTransparentButton>
         </StyledFooter>
@@ -70,4 +53,4 @@ const NewPost = ({ setPosts }) => {
   );
 };
 
-export default NewPost;
+export default NewMessage;

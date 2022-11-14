@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import StyledMessagesContainer from "../../styles/Messages/StyledMessagesContainer";
-import Post from "./Post";
+import PostMessage from "./PostMessage";
 
-const PostContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
+const PostMessageContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const PostContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
   return (
     <StyledMessagesContainer key={"postContainer"} id="postContainer">
       {posts.map((post) => (
-        <Post
+        <PostMessage
           key={post.id}
           id={post.id}
           text={post.text}
@@ -43,9 +43,9 @@ const PostContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
           comments={post.comment}
           loggedUser={loggedUser}
           setPosts={setPosts}
-        ></Post>
+        ></PostMessage>
       ))}
     </StyledMessagesContainer>
   );
 };
-export default PostContainer;
+export default PostMessageContainer;

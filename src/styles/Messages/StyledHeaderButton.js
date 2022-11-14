@@ -9,7 +9,7 @@ const StyledCommentButton = styled.button`
   padding: 5px;
 
   color: ${(props) => (props.primary ? "#00abb3" : "#b2b2b2")};
-  opacity: ${(props) => (props.opacity ? "0.5" : "1")};
+  opacity: ${(props) => (props.light ? 0.5 : 1)};
 `;
 
 export default StyledCommentButton;

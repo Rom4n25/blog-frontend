@@ -5,7 +5,7 @@ import StyledHeaderButton from "../../styles/Messages/StyledHeaderButton";
 import StyledAuthorDateWrapper from "../../styles/Messages/StyledAuthorDateWrapper";
 import { Link } from "react-router-dom";
 
-const PostHeader = ({
+const Header = ({
   dateCreated,
   author,
   addComment,
@@ -24,7 +24,7 @@ const PostHeader = ({
       </StyledAuthorDateWrapper>
       <div style={{ display: "flex" }}>
         {loggedUser === author ? (
-          <StyledHeaderButton opacity onClick={() => editPostEffect()}>
+          <StyledHeaderButton light onClick={() => editPostEffect()}>
             edit &#9998;
           </StyledHeaderButton>
         ) : (
@@ -37,4 +37,4 @@ const PostHeader = ({
     </StyledHeader>
   );
 };
-export default PostHeader;
+export default Header;

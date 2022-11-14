@@ -6,7 +6,7 @@ import UserData from "../services/UserData";
 import StyledButton from "../styles/StyledButton";
 import HeaderLogo from "../components/header/HeaderLogo";
 import { useLocation } from "react-router-dom";
-import PostContainer from "../components/post/PostContainer";
+import PostMessageContainer from "../components/message/PostMessageContainer";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -45,12 +45,12 @@ const User = () => {
           </StyledButton>
         </StyledHeader>
         <StyledMain>
-          <PostContainer
+          <PostMessageContainer
             loggedUser={location.state.loggedUser}
             loadPosts={loadPosts}
             posts={posts}
             setPosts={setPosts}
-          ></PostContainer>
+          ></PostMessageContainer>
         </StyledMain>
       </>
     );
