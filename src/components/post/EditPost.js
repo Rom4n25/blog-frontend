@@ -1,5 +1,5 @@
-import StyledNewPost from "../../styles/Post/StyledNewPost";
-import StyledPostFooter from "../../styles/Post/StyledPostFooter";
+import StyledNewPost from "../../styles/Messages/Post/StyledNewPost";
+import StyledFooter from "../../styles/Messages/StyledFooter";
 import StyledTextArea from "../../styles/StyledTextArea";
 import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
 import StyledInputFile from "../../styles/StyledInputFile";
@@ -54,7 +54,7 @@ const EditPost = ({ text, postId, setPosts, editPost, image }) => {
           cols={60}
           placeholder="Say something..."
         ></StyledTextArea>
-        <StyledPostFooter>
+        <StyledFooter>
           <StyledInputFileWrapper>
             <IconImg />
             <StyledInputFile
@@ -82,7 +82,7 @@ const EditPost = ({ text, postId, setPosts, editPost, image }) => {
           <StyledTransparentButton onClick={addPost}>
             <IconSend />
           </StyledTransparentButton>
-        </StyledPostFooter>
+        </StyledFooter>
       </StyledNewPost>
     </>
   );

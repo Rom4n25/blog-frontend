@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import CommentData from "../../services/CommentData";
 import StyledTransparentButton from "../../styles/StyledTransparentButton";
 import StyledTextArea from "../../styles/StyledTextArea";
-import StyledNewComment from "../../styles/Comment/StyledNewComment";
+import StyledNewComment from "../../styles/Messages/Comment/StyledNewComment";
 import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
 import IconImg from "../../styles/IconImg";
 import StyledInputFile from "../../styles/StyledInputFile";
-import StyledCommentFooter from "../../styles/Comment/StyledCommentFooter";
+import StyledFooter from "../../styles/Messages/StyledFooter";
 import IconSend from "../../styles/IconSend";
 import StyledImgName from "../../styles/StyledImgName";
 import IconRemove from "../../styles/IconRemove";
@@ -61,7 +61,7 @@ const EditComment = ({
           cols={60}
           placeholder="Say something..."
         ></StyledTextArea>
-        <StyledCommentFooter>
+        <StyledFooter>
           <StyledInputFileWrapper>
             <IconImg />
             <StyledInputFile
@@ -89,7 +89,7 @@ const EditComment = ({
           <StyledTransparentButton onClick={addComment}>
             <IconSend />
           </StyledTransparentButton>
-        </StyledCommentFooter>
+        </StyledFooter>
       </StyledNewComment>
     </>
   );

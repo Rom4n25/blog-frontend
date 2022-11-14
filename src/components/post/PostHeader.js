@@ -1,7 +1,8 @@
-import StyledPostHeader from "../../styles/Post/StyledPostHeader";
-import StyledPostAuthor from "../../styles/Post/StyledPostAuthor";
-import StyledPostDate from "../../styles/Post/StyledPostDate";
-import StyledCommentButton from "../../styles/Comment/StyledCommentButton";
+import StyledHeader from "../../styles/Messages/StyledHeader";
+import StyledAuthor from "../../styles/Messages/StyledAuthor";
+import StyledDate from "../../styles/Messages/StyledDate";
+import StyledHeaderButton from "../../styles/Messages/StyledHeaderButton";
+import StyledAuthorDateWrapper from "../../styles/Messages/StyledAuthorDateWrapper";
 import { Link } from "react-router-dom";
 
 const PostHeader = ({
@@ -12,28 +13,28 @@ const PostHeader = ({
   editPostEffect,
 }) => {
   return (
-    <StyledPostHeader>
-      <div>
-        <StyledPostAuthor>
+    <StyledHeader>
+      <StyledAuthorDateWrapper>
+        <StyledAuthor>
           <Link id="user_link" to={"/user/" + author} state={{ loggedUser }}>
             @{author + " "}
           </Link>
-        </StyledPostAuthor>
-        <StyledPostDate>{new Date(dateCreated).toUTCString()}</StyledPostDate>
-      </div>
-      <div>
+        </StyledAuthor>
+        <StyledDate>{new Date(dateCreated).toUTCString()}</StyledDate>
+      </StyledAuthorDateWrapper>
+      <div style={{ display: "flex" }}>
         {loggedUser === author ? (
-          <StyledCommentButton onClick={() => editPostEffect()}>
+          <StyledHeaderButton onClick={() => editPostEffect()}>
             edit &#9998;
-          </StyledCommentButton>
+          </StyledHeaderButton>
         ) : (
           <></>
         )}
-        <StyledCommentButton onClick={addComment}>
+        <StyledHeaderButton onClick={addComment}>
           reply &#8631;
-        </StyledCommentButton>
+        </StyledHeaderButton>
       </div>
-    </StyledPostHeader>
+    </StyledHeader>
   );
 };
 export default PostHeader;

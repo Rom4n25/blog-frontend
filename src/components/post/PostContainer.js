@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import StyledPostContainer from "../../styles/Post/StyledPostContainer";
+import StyledPostContainer from "../../styles/Messages/Post/StyledPostContainer";
 import Post from "./Post";
 
 const PostContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {

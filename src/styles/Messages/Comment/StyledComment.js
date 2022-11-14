@@ -5,7 +5,10 @@ const StyledComment = styled.div`
   flex-direction: column;
   align-items: left;
   background-color: #3c4048;
-  padding: 40px;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-bottom: 3px;
 `;
 
 export default StyledComment;

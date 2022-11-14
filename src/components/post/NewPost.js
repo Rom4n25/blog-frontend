@@ -1,11 +1,11 @@
-import StyledNewPost from "../../styles/Post/StyledNewPost";
+import StyledNewPost from "../../styles/Messages/Post/StyledNewPost";
 import PostData from "../../services/PostData";
 import StyledTransparentButton from "../../styles/StyledTransparentButton";
 import StyledTextArea from "../../styles/StyledTextArea";
 import StyledInputFile from "../../styles/StyledInputFile";
 import IconImg from "../../styles/IconImg";
 import StyledInputFileWrapper from "../../styles/StyledInputFileWrapper";
-import StyledPostFooter from "../../styles/Post/StyledPostFooter";
+import StyledFooter from "../../styles/Messages/StyledFooter";
 import IconSend from "../../styles/IconSend";
 import StyledImgName from "../../styles/StyledImgName";
 import { useState } from "react";
@@ -45,7 +45,7 @@ const NewPost = ({ setPosts }) => {
           cols={60}
           placeholder="Say something..."
         ></StyledTextArea>
-        <StyledPostFooter>
+        <StyledFooter>
           <StyledInputFileWrapper>
             <IconImg />
             <StyledInputFile
@@ -64,7 +64,7 @@ const NewPost = ({ setPosts }) => {
           <StyledTransparentButton onClick={addPost}>
             <IconSend />
           </StyledTransparentButton>
-        </StyledPostFooter>
+        </StyledFooter>
       </StyledNewPost>
     </>
   );

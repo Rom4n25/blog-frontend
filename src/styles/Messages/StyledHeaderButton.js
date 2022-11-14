@@ -7,7 +7,7 @@ const StyledCommentButton = styled.button`
   font-size: 15px;
   background-color: transparent;
   border: none;
-  margin-bottom: 5px;
+  padding: 5px;
 `;
 
 export default StyledCommentButton;

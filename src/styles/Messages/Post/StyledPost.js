@@ -10,7 +10,8 @@ const StyledPost = styled.div`
   padding-right: 20px;
   padding-left: 20px;
   border-radius: 4px;
-  margin-top: 15px;
+  margin-top: 12px;
+  margin-bottom: 8px;
 `;
 
 export default StyledPost;

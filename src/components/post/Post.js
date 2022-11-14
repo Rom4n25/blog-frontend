@@ -1,9 +1,9 @@
-import StyledPost from "../../styles/Post/StyledPost";
+import StyledPost from "../../styles/Messages/Post/StyledPost";
 import Comment from "../comment/Comment";
 import { useState } from "react";
-import StyledCommentButton from "../../styles/Comment/StyledCommentButton";
-import StyledPostText from "../../styles/Post/StyledPostText";
-import StyledCommentContainer from "../../styles/Comment/StyledCommentContainer";
+import StyledShowCommentsButton from "../../styles/Messages/Post/StyledShowCommentsButton";
+import StyledText from "../../styles/Messages/StyledText";
+import StyledCommentContainer from "../../styles/Messages/Comment/StyledCommentContainer";
 import NewComment from "../comment/NewComment";
 import PostHeader from "./PostHeader";
 import StyledImgWrapper from "../../styles/StyledImgWrapper";
@@ -39,7 +39,7 @@ const Post = ({
           loggedUser={loggedUser}
           editPostEffect={() => setEditPost(true)}
         ></PostHeader>
-        <StyledPostText>{text}</StyledPostText>
+        <StyledText>{text}</StyledText>
         {image !== null ? (
           <StyledImgWrapper>
             <img
@@ -53,7 +53,7 @@ const Post = ({
           <></>
         )}
 
-        <StyledCommentButton
+        <StyledShowCommentsButton
           value={showComments}
           onClick={() => setShowComments(!showComments)}
         >
@@ -62,7 +62,7 @@ const Post = ({
           ) : (
             <></>
           )}
-        </StyledCommentButton>
+        </StyledShowCommentsButton>
       </StyledPost>
 
       {editPost === true ? (

@@ -1,11 +1,12 @@
-import StyledComment from "../../styles/Comment/StyledComment";
-import StyledCommentAuthor from "../../styles/Comment/StyledCommentAuthor";
-import StyledCommentDate from "../../styles/Comment/StyledCommentDate";
-import StyledCommentHeader from "../../styles/Comment/StyledCommentHeader";
-import StyledCommentText from "../../styles/Comment/StyledCommentText";
+import StyledComment from "../../styles/Messages/Comment/StyledComment";
+import StyledAuthor from "../../styles/Messages/StyledAuthor";
+import StyledDate from "../../styles/Messages/StyledDate";
+import StyledHeader from "../../styles/Messages/StyledHeader";
+import StyledText from "../../styles/Messages/StyledText";
 import StyledImgWrapper from "../../styles/StyledImgWrapper";
-import StyledCommentButton from "../../styles/Comment/StyledCommentButton";
+import StyledHeaderButton from "../../styles/Messages/StyledHeaderButton";
 import EditComment from "./EditComment";
+import StyledAuthorDateWrapper from "../../styles/Messages/StyledAuthorDateWrapper";
 import { useState } from "react";
 
 const Comment = ({
@@ -27,22 +28,20 @@ const Comment = ({
   return (
     <>
       <StyledComment>
-        <StyledCommentHeader>
-          <div>
-            <StyledCommentAuthor>@{author + " "}</StyledCommentAuthor>
-            <StyledCommentDate>
-              {new Date(created).toUTCString()}
-            </StyledCommentDate>
-          </div>
+        <StyledHeader>
+          <StyledAuthorDateWrapper>
+            <StyledAuthor>@{author + " "}</StyledAuthor>
+            <StyledDate>{new Date(created).toUTCString()}</StyledDate>
+          </StyledAuthorDateWrapper>
           {loggedUser === author ? (
-            <StyledCommentButton onClick={() => editCommentEffect()}>
+            <StyledHeaderButton onClick={() => editCommentEffect()}>
               edit &#9998;
-            </StyledCommentButton>
+            </StyledHeaderButton>
           ) : (
             <></>
           )}
-        </StyledCommentHeader>
-        <StyledCommentText>{text}</StyledCommentText>
+        </StyledHeader>
+        <StyledText>{text}</StyledText>
         {image !== null ? (
           <StyledImgWrapper>
             <img
