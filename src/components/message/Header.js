@@ -10,7 +10,8 @@ const Header = ({
   author,
   addComment,
   loggedUser,
-  editPostEffect,
+  editMessageEffect,
+  deleteMessageEffect,
 }) => {
   return (
     <StyledHeader>
@@ -24,9 +25,15 @@ const Header = ({
       </StyledAuthorDateWrapper>
       <div style={{ display: "flex" }}>
         {loggedUser === author ? (
-          <StyledHeaderButton light onClick={() => editPostEffect()}>
-            edit &#9998;
-          </StyledHeaderButton>
+          <>
+            <StyledHeaderButton light onClick={() => deleteMessageEffect()}>
+              delete &#10005;
+            </StyledHeaderButton>
+
+            <StyledHeaderButton light onClick={() => editMessageEffect()}>
+              edit &#9998;
+            </StyledHeaderButton>
+          </>
         ) : (
           <></>
         )}

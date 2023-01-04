@@ -41,7 +41,17 @@ const CommentData = () => {
     }
   }
 
-  return { getComments, addComment, editCommentById };
+  async function deleteCommentById(id) {
+    let response = await fetch("/comments/delete/" + id, {
+      method: "delete",
+    });
+    if (response.status === 401) {
+      sessionStorage.removeItem("auth");
+      window.location.href = loginPageURL;
+    }
+  }
+
+  return { getComments, addComment, editCommentById, deleteCommentById };
 };
 
 export default CommentData;

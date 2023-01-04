@@ -53,7 +53,23 @@ const PostData = () => {
     }
   }
 
-  return { getAllPosts, getAllPostsByUserId, addPost, editPostById };
+  async function deletePostById(id) {
+    let response = await fetch("/posts/delete/" + id, {
+      method: "delete",
+    });
+    if (response.status === 401) {
+      sessionStorage.removeItem("auth");
+      window.location.href = loginPageURL;
+    }
+  }
+
+  return {
+    getAllPosts,
+    getAllPostsByUserId,
+    addPost,
+    editPostById,
+    deletePostById,
+  };
 };
 
 export default PostData;

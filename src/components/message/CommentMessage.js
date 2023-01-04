@@ -42,6 +42,19 @@ const CommentMessage = ({
       });
   };
 
+  const deleteComment = () => {
+    CommentData()
+      .deleteCommentById(id)
+      .then(() => {
+        CommentData()
+          .getComments(postId)
+          .then((comments) => {
+            setComments(comments);
+          })
+          .catch(() => setComments([]));
+      });
+  };
+
   return (
     <>
       <StyledComment>
@@ -50,7 +63,8 @@ const CommentMessage = ({
           author={author}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
-          editPostEffect={() => setShouldEdit(!shouldEdit)}
+          editMessageEffect={() => setShouldEdit(!shouldEdit)}
+          deleteMessageEffect={deleteComment}
         ></Header>
 
         <StyledText>{text}</StyledText>

@@ -75,6 +75,16 @@ const PostMessage = ({
       });
   };
 
+  const deletePost = () => {
+    PostData()
+      .deletePostById(id)
+      .then(() =>
+        PostData()
+          .getAllPosts(0)
+          .then((posts) => setPosts(posts))
+      );
+  };
+
   return (
     <>
       <StyledPost>
@@ -83,7 +93,8 @@ const PostMessage = ({
           author={author}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
-          editPostEffect={() => setShouldEdit(!shouldEdit)}
+          editMessageEffect={() => setShouldEdit(!shouldEdit)}
+          deleteMessageEffect={deletePost}
         ></Header>
         <StyledText>{text}</StyledText>
         {image !== null ? (
