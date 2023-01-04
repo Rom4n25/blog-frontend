@@ -8,7 +8,23 @@ const StyledCommentButton = styled.button`
   border: none;
   padding: 5px;
 
-  color: ${(props) => (props.primary ? "#00abb3" : "#b2b2b2")};
+  ${(props) => {
+    if (props.danger) {
+      return `
+
+        color: #b20000;
+    `;
+    } else if (props.primary) {
+      return `
+        color: #00abb3;
+    `;
+    } else {
+      return `
+        color: #F8CB2E;
+    `;
+    }
+  }}
+
   opacity: ${(props) => (props.light ? 0.5 : 1)};
 `;
 

@@ -21,16 +21,16 @@ const Header = ({
             @{author + " "}
           </Link>
         </StyledAuthor>
-        <StyledDate>{new Date(dateCreated).toUTCString()}</StyledDate>
+        <StyledDate>{new Date(dateCreated).toLocaleString()}</StyledDate>
       </StyledAuthorDateWrapper>
       <div style={{ display: "flex" }}>
         {loggedUser === author ? (
           <>
-            <StyledHeaderButton light onClick={() => deleteMessageEffect()}>
+            <StyledHeaderButton danger onClick={() => deleteMessageEffect()}>
               delete &#10005;
             </StyledHeaderButton>
 
-            <StyledHeaderButton light onClick={() => editMessageEffect()}>
+            <StyledHeaderButton onClick={() => editMessageEffect()}>
               edit &#9998;
             </StyledHeaderButton>
           </>
