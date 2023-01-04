@@ -116,11 +116,11 @@ const PostMessage = ({
             setShowComments(!showComments);
           }}
         >
-          {comments.length > 0 ? (
+          {commentList.length > 0 ? (
             <p>
               {showComments
-                ? "hide comments (" + comments.length + ")"
-                : "show comments (" + comments.length + ")"}
+                ? "hide comments (" + commentList.length + ")"
+                : "show comments (" + commentList.length + ")"}
             </p>
           ) : (
             <></>
