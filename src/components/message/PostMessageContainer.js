@@ -41,6 +41,7 @@ const PostMessageContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
           dateCreated={post.created}
           author={post.user.username}
           comments={post.comment}
+          points={post.pointPost}
           loggedUser={loggedUser}
           setPosts={setPosts}
         ></PostMessage>

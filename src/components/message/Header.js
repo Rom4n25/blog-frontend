@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 const Header = ({
   dateCreated,
   author,
+  points,
   addComment,
+  addPoint,
   loggedUser,
   editMessageEffect,
   deleteMessageEffect,
@@ -39,6 +41,9 @@ const Header = ({
         )}
         <StyledHeaderButton primary onClick={addComment}>
           reply &#8631;
+        </StyledHeaderButton>
+        <StyledHeaderButton point onClick={addPoint}>
+          +{points}
         </StyledHeaderButton>
       </div>
     </StyledHeader>

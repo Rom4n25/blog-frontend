@@ -10,6 +10,7 @@ const CommentMessage = ({
   text,
   image,
   author,
+  points,
   dateCreated,
   setComments,
   loggedUser,
@@ -17,6 +18,7 @@ const CommentMessage = ({
   newComment,
   setNewComment,
 }) => {
+  const [pointList, setPointList] = useState(points.length);
   const [shouldEdit, setShouldEdit] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(null);
@@ -55,12 +57,24 @@ const CommentMessage = ({
       });
   };
 
+  const addPoint = () => {
+    CommentData()
+      .addPoint(id)
+      .then((response) => {
+        if (response.status !== 400) {
+          setPointList(pointList + 1);
+        }
+      });
+  };
+
   return (
     <>
       <StyledComment>
         <Header
           addComment={() => setNewComment(!newComment)}
           author={author}
+          points={pointList}
+          addPoint={addPoint}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
           editMessageEffect={() => setShouldEdit(!shouldEdit)}

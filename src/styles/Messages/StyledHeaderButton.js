@@ -18,6 +18,10 @@ const StyledCommentButton = styled.button`
       return `
         color: #00abb3;
     `;
+    } else if (props.point) {
+      return `
+      color: #dc5f00;
+  `;
     } else {
       return `
         color: #F8CB2E;

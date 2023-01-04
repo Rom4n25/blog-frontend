@@ -18,11 +18,13 @@ const PostMessage = ({
   author,
   dateCreated,
   comments,
+  points,
   loggedUser,
   setPosts,
 }) => {
   const [showComments, setShowComments] = useState(false);
   const [commentList, setCommentList] = useState(comments);
+  const [pointList, setPointList] = useState(points.length);
   const [newComment, setNewComment] = useState(false);
   const [newCommentText, setNewCommentText] = useState("");
   const [newCommentImage, setNewCommentImage] = useState(null);
@@ -85,13 +87,25 @@ const PostMessage = ({
       );
   };
 
+  const addPoint = () => {
+    PostData()
+      .addPoint(id)
+      .then((response) => {
+        if (response.status !== 400) {
+          setPointList(pointList + 1);
+        }
+      });
+  };
+
   return (
     <>
       <StyledPost>
         <Header
           addComment={() => setNewComment(!newComment)}
+          addPoint={addPoint}
           author={author}
           dateCreated={dateCreated}
+          points={pointList}
           loggedUser={loggedUser}
           editMessageEffect={() => setShouldEdit(!shouldEdit)}
           deleteMessageEffect={deletePost}
@@ -148,6 +162,7 @@ const PostMessage = ({
               id={comment.id}
               text={comment.text}
               author={comment.user.username}
+              points={comment.pointComment}
               dateCreated={comment.created}
               image={comment.img}
               loggedUser={loggedUser}

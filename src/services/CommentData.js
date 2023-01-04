@@ -51,7 +51,25 @@ const CommentData = () => {
     }
   }
 
-  return { getComments, addComment, editCommentById, deleteCommentById };
+  async function addPoint(id) {
+    let response = await fetch("comments/" + id + "/point/add", {
+      method: "post",
+    });
+    if (response.status === 401) {
+      sessionStorage.removeItem("auth");
+      window.location.href = loginPageURL;
+    }
+
+    return response;
+  }
+
+  return {
+    getComments,
+    addComment,
+    editCommentById,
+    deleteCommentById,
+    addPoint,
+  };
 };
 
 export default CommentData;
