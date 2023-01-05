@@ -4,8 +4,8 @@ const StyledCommentButton = styled.button`
   height: 30px;
   cursor: pointer;
   font-size: 15px;
-  background-color: transparent;
   border: none;
+  background-color: transparent;
   padding: 5px;
 
   ${(props) => {
@@ -19,6 +19,10 @@ const StyledCommentButton = styled.button`
         color: #00abb3;
     `;
     } else if (props.point) {
+      return `
+      color: #F9F9F9;
+  `;
+    } else if (props.pointAdded) {
       return `
       color: #dc5f00;
   `;

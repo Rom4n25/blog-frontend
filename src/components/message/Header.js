@@ -11,6 +11,7 @@ const Header = ({
   points,
   addComment,
   addPoint,
+  isPointAwarded,
   loggedUser,
   editMessageEffect,
   deleteMessageEffect,
@@ -42,9 +43,15 @@ const Header = ({
         <StyledHeaderButton primary onClick={addComment}>
           reply &#8631;
         </StyledHeaderButton>
-        <StyledHeaderButton point onClick={addPoint}>
-          +{points}
-        </StyledHeaderButton>
+        {isPointAwarded ? (
+          <StyledHeaderButton pointAdded onClick={addPoint}>
+            +{points}
+          </StyledHeaderButton>
+        ) : (
+          <StyledHeaderButton point onClick={addPoint}>
+            +{points}
+          </StyledHeaderButton>
+        )}
       </div>
     </StyledHeader>
   );

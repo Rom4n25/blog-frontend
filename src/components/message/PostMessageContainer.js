@@ -44,6 +44,7 @@ const PostMessageContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
           points={post.pointPost}
           loggedUser={loggedUser}
           setPosts={setPosts}
+          posts={posts}
         ></PostMessage>
       ))}
     </StyledMessagesContainer>

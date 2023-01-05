@@ -1,6 +1,6 @@
 import StyledPost from "../../styles/Messages/Post/StyledPost";
 import CommentMessage from "./CommentMessage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StyledShowCommentsButton from "../../styles/Messages/Post/StyledShowCommentsButton";
 import StyledText from "../../styles/Messages/StyledText";
 import StyledMessagesContainer from "../../styles/Messages/StyledMessagesContainer";
@@ -21,16 +21,27 @@ const PostMessage = ({
   points,
   loggedUser,
   setPosts,
+  posts,
 }) => {
   const [showComments, setShowComments] = useState(false);
   const [commentList, setCommentList] = useState(comments);
-  const [pointList, setPointList] = useState(points.length);
+  const [pointsNumber, setPointsNumber] = useState(points.length);
+  const [isPointAwarded, setPointAwarded] = useState(false);
   const [newComment, setNewComment] = useState(false);
   const [newCommentText, setNewCommentText] = useState("");
   const [newCommentImage, setNewCommentImage] = useState(null);
   const [shouldEdit, setShouldEdit] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(null);
+
+  useEffect(() => {
+    for (const element of points) {
+      if (element.user.username === loggedUser) {
+        setPointAwarded(true);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const addComment = () => {
     const formData = new FormData();
@@ -80,11 +91,9 @@ const PostMessage = ({
   const deletePost = () => {
     PostData()
       .deletePostById(id)
-      .then(() =>
-        PostData()
-          .getAllPosts(0)
-          .then((posts) => setPosts(posts))
-      );
+      .then(() => {
+        setPosts(posts.filter((post) => post.id !== id));
+      });
   };
 
   const addPoint = () => {
@@ -92,7 +101,10 @@ const PostMessage = ({
       .addPoint(id)
       .then((response) => {
         if (response.status !== 400) {
-          setPointList(pointList + 1);
+          setPointsNumber(pointsNumber + 1);
+          setPointAwarded(true);
+        } else {
+          window.alert("You've already given a point to this Post!");
         }
       });
   };
@@ -105,7 +117,8 @@ const PostMessage = ({
           addPoint={addPoint}
           author={author}
           dateCreated={dateCreated}
-          points={pointList}
+          isPointAwarded={isPointAwarded}
+          points={pointsNumber}
           loggedUser={loggedUser}
           editMessageEffect={() => setShouldEdit(!shouldEdit)}
           deleteMessageEffect={deletePost}

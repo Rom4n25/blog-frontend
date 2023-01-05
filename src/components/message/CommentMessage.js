@@ -3,25 +3,35 @@ import StyledText from "../../styles/Messages/StyledText";
 import StyledImgWrapper from "../../styles/Messages/StyledImgWrapper";
 import EditMessage from "./EditMessage";
 import CommentData from "../../services/CommentData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 const CommentMessage = ({
   id,
   text,
   image,
   author,
-  points,
   dateCreated,
   setComments,
+  points,
   loggedUser,
   postId,
   newComment,
   setNewComment,
 }) => {
-  const [pointList, setPointList] = useState(points.length);
+  const [pointsNumber, setPointsNumber] = useState(points.length);
+  const [isPointAwarded, setPointAwarded] = useState(false);
   const [shouldEdit, setShouldEdit] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(null);
+
+  useEffect(() => {
+    for (const element of points) {
+      if (element.user.username === loggedUser) {
+        setPointAwarded(true);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const editComment = () => {
     const formData = new FormData();
@@ -62,7 +72,10 @@ const CommentMessage = ({
       .addPoint(id)
       .then((response) => {
         if (response.status !== 400) {
-          setPointList(pointList + 1);
+          setPointsNumber(pointsNumber + 1);
+          setPointAwarded(true);
+        } else {
+          window.alert("You've already given a point to this Comment!");
         }
       });
   };
@@ -73,7 +86,8 @@ const CommentMessage = ({
         <Header
           addComment={() => setNewComment(!newComment)}
           author={author}
-          points={pointList}
+          points={pointsNumber}
+          isPointAwarded={isPointAwarded}
           addPoint={addPoint}
           dateCreated={dateCreated}
           loggedUser={loggedUser}
