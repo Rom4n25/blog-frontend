@@ -64,7 +64,7 @@ const PostData = () => {
   }
 
   async function addPoint(id) {
-    let response = await fetch("posts/" + id + "/point/add", {
+    let response = await fetch("/posts/" + id + "/point/add", {
       method: "post",
     });
     if (response.status === 401) {
@@ -75,6 +75,17 @@ const PostData = () => {
     return response;
   }
 
+  async function findTop10() {
+    let response = await fetch("/posts/top", {
+      method: "get",
+    });
+    if (response.status === 401) {
+      sessionStorage.removeItem("auth");
+      window.location.href = loginPageURL;
+    }
+    return response.json();
+  }
+
   return {
     getAllPosts,
     getAllPostsByUserId,
@@ -82,6 +93,7 @@ const PostData = () => {
     editPostById,
     deletePostById,
     addPoint,
+    findTop10,
   };
 };
 

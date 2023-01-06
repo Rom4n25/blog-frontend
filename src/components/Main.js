@@ -3,6 +3,8 @@ import PostMessageContainer from "./message/PostMessageContainer";
 import PostData from "../services/PostData";
 import NewMessage from "./message/NewMessage";
 import { useState } from "react";
+import StyledNavBar from "../styles/Main/StyledNavBar";
+import StyledNavBarButton from "../styles/Main/StyledNavBarButton";
 
 const Main = ({ loggedUser }) => {
   const [posts, setPosts] = useState([]);
@@ -11,6 +13,10 @@ const Main = ({ loggedUser }) => {
 
   const loadPosts = async (page) => {
     return await PostData().getAllPosts(page);
+  };
+
+  const loadTop10Posts = async () => {
+    return await PostData().findTop10();
   };
 
   const addPost = () => {
@@ -35,6 +41,29 @@ const Main = ({ loggedUser }) => {
 
   return (
     <StyledMain>
+      <StyledNavBar>
+        <StyledNavBarButton
+          onClick={() => loadPosts(0).then((posts) => setPosts(posts))}
+        >
+          All Posts
+        </StyledNavBarButton>
+        <div
+          style={{
+            backgroundColor: "#00abb3",
+            height: "100%",
+            width: "1px",
+          }}
+        ></div>
+        <StyledNavBarButton
+          onClick={() =>
+            loadTop10Posts().then((posts) => {
+              setPosts(posts);
+            })
+          }
+        >
+          Top Rated
+        </StyledNavBarButton>
+      </StyledNavBar>
       <NewMessage
         text={newPostText}
         setText={setNewPostText}
