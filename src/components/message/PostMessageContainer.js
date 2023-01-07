@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import StyledMessagesContainer from "../../styles/Messages/StyledMessagesContainer";
 import PostMessage from "./PostMessage";
 
-const PostMessageContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
-  const [page, setPage] = useState(1);
-
+const PostMessageContainer = ({
+  loggedUser,
+  loadPosts,
+  posts,
+  setPosts,
+  page,
+  setPage,
+  shouldLoadPostOnScroll,
+}) => {
   useEffect(() => {
     loadPosts(0).then((posts) => setPosts(posts));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -14,12 +20,15 @@ const PostMessageContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
     const scrollEvent = () => {
       if (
         window.innerHeight + window.scrollY >=
-        document.getElementById("postContainer").offsetHeight + 50
+          document.getElementById("postContainer").offsetHeight + 50 &&
+        shouldLoadPostOnScroll
       ) {
-        loadPosts(page).then((post) => {
-          setPage((page) => page + 1);
-          setPosts((posts) => posts.concat(post));
-        });
+        loadPosts(page)
+          .then((post) => {
+            setPage((page) => page + 1);
+            setPosts((posts) => posts.concat(post));
+          })
+          .catch(() => console.log("No more posts"));
         window.removeEventListener("scroll", scrollEvent);
       }
     };
@@ -28,7 +37,7 @@ const PostMessageContainer = ({ loggedUser, loadPosts, posts, setPosts }) => {
       window.removeEventListener("scroll", scrollEvent);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, shouldLoadPostOnScroll]);
 
   return (
     <StyledMessagesContainer key={"postContainer"} id="postContainer">

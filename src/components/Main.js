@@ -8,14 +8,18 @@ import StyledNavBarButton from "../styles/Main/StyledNavBarButton";
 
 const Main = ({ loggedUser }) => {
   const [posts, setPosts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [shouldLoadPostOnScroll, setShouldLoadPostOnScroll] = useState(true);
   const [newPostText, setNewPostText] = useState("");
   const [newPostImage, setNewPostImage] = useState(null);
 
   const loadPosts = async (page) => {
+    setShouldLoadPostOnScroll(true);
     return await PostData().getAllPosts(page);
   };
 
   const loadTop10Posts = async () => {
+    setShouldLoadPostOnScroll(false);
     return await PostData().findTop10();
   };
 
@@ -43,7 +47,12 @@ const Main = ({ loggedUser }) => {
     <StyledMain>
       <StyledNavBar>
         <StyledNavBarButton
-          onClick={() => loadPosts(0).then((posts) => setPosts(posts))}
+          onClick={() => {
+            loadPosts(0).then((posts) => {
+              setPage(1);
+              setPosts(posts);
+            });
+          }}
         >
           All Posts
         </StyledNavBarButton>
@@ -61,7 +70,7 @@ const Main = ({ loggedUser }) => {
             })
           }
         >
-          Top Rated
+          Top 10
         </StyledNavBarButton>
       </StyledNavBar>
       <NewMessage
@@ -75,7 +84,10 @@ const Main = ({ loggedUser }) => {
         loggedUser={loggedUser}
         loadPosts={loadPosts}
         posts={posts}
+        page={page}
+        setPage={setPage}
         setPosts={setPosts}
+        shouldLoadPostOnScroll={shouldLoadPostOnScroll}
       ></PostMessageContainer>
     </StyledMain>
   );
