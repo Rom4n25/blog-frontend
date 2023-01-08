@@ -48,10 +48,11 @@ const Main = ({ loggedUser }) => {
       <StyledNavBar>
         <StyledNavBarButton
           onClick={() => {
-            loadPosts(0).then((posts) => {
-              setPage(1);
-              setPosts(posts);
-            });
+            loadPosts(0)
+              .then((posts) => {
+                setPosts(posts);
+              })
+              .then(() => setPage(1));
           }}
         >
           All Posts

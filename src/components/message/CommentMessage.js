@@ -74,6 +74,11 @@ const CommentMessage = ({
         if (response.status !== 400) {
           setPointsNumber(pointsNumber + 1);
           setPointAwarded(true);
+          CommentData()
+            .getComments(postId)
+            .then((comments) => {
+              setComments(comments);
+            });
         } else {
           window.alert("You've already given a point to this Comment!");
         }
