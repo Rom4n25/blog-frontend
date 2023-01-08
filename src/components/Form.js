@@ -12,11 +12,13 @@ const Form = ({ formName, btnName, onSubmit, setUsername, setPassword }) => {
         <StyledLabel>Username</StyledLabel>
         <StyledInput
           type={"text"}
+          required
           onChange={(e) => setUsername(e.target.value)}
         ></StyledInput>
         <StyledLabel>Password</StyledLabel>
         <StyledInput
           type={"password"}
+          required
           onChange={(e) => setPassword(e.target.value)}
         ></StyledInput>
         <StyledButton primary type={"submit"}>
