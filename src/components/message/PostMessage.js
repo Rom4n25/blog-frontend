@@ -2,7 +2,6 @@ import StyledPost from "../../styles/Messages/Post/StyledPost";
 import CommentMessage from "./CommentMessage";
 import { useEffect, useState } from "react";
 import StyledShowCommentsButton from "../../styles/Messages/Post/StyledShowCommentsButton";
-import StyledText from "../../styles/Messages/StyledText";
 import StyledMessagesContainer from "../../styles/Messages/StyledMessagesContainer";
 import NewMessage from "./NewMessage";
 import Header from "./Header";
@@ -10,6 +9,7 @@ import StyledImgWrapper from "../../styles/Messages/StyledImgWrapper";
 import EditMessage from "./EditMessage";
 import PostData from "../../services/PostData";
 import CommentData from "../../services/CommentData";
+import Text from "./Text";
 
 const PostMessage = ({
   id,
@@ -18,6 +18,7 @@ const PostMessage = ({
   author,
   dateCreated,
   comments,
+  tag,
   points,
   loggedUser,
   setPosts,
@@ -123,7 +124,7 @@ const PostMessage = ({
           editMessageEffect={() => setShouldEdit(!shouldEdit)}
           deleteMessageEffect={deletePost}
         ></Header>
-        <StyledText>{text}</StyledText>
+        <Text tag={tag} text={text}></Text>
         {image !== null ? (
           <StyledImgWrapper>
             <img

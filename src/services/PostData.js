@@ -86,6 +86,18 @@ const PostData = () => {
     return response.json();
   }
 
+  async function getAllPostsByTag(name, page) {
+    let response = await fetch("/posts/tag/" + name + "/" + page, {
+      method: "get",
+    });
+    if (response.status === 401) {
+      sessionStorage.removeItem("auth");
+      window.location.href = loginPageURL;
+    }
+    response = await response.json();
+    return response;
+  }
+
   return {
     getAllPosts,
     getAllPostsByUserId,
@@ -94,6 +106,7 @@ const PostData = () => {
     deletePostById,
     addPoint,
     findTop10,
+    getAllPostsByTag,
   };
 };
 

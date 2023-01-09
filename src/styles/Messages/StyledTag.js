@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const StyledPostText = styled.p`
-  width: 100%;
+const StyledTag = styled.p`
   padding-top: 10px;
   font-size: 15px;
+  color: #00abb3;
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
 `;
 
-export default StyledPostText;
+export default StyledTag;

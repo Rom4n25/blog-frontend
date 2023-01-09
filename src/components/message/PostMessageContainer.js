@@ -51,6 +51,7 @@ const PostMessageContainer = ({
           author={post.user.username}
           comments={post.comment}
           points={post.pointPost}
+          tag={post.tag}
           loggedUser={loggedUser}
           setPosts={setPosts}
           posts={posts}
