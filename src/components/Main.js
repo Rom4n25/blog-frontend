@@ -2,7 +2,7 @@ import StyledMain from "../styles/Main/StyledMain";
 import PostMessageContainer from "./message/PostMessageContainer";
 import PostData from "../services/PostData";
 import NewMessage from "./message/NewMessage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StyledNavBar from "../styles/Main/StyledNavBar";
 import StyledNavBarButton from "../styles/Main/StyledNavBarButton";
 
@@ -12,6 +12,12 @@ const Main = ({ loggedUser }) => {
   const [shouldLoadPostOnScroll, setShouldLoadPostOnScroll] = useState(true);
   const [newPostText, setNewPostText] = useState("");
   const [newPostImage, setNewPostImage] = useState(null);
+
+  useEffect(() => {
+    PostData()
+      .getAllPosts(0)
+      .then((posts) => setPosts(posts));
+  }, []);
 
   const loadPosts = async (page) => {
     setShouldLoadPostOnScroll(true);

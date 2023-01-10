@@ -5,7 +5,7 @@ import PostData from "../services/PostData";
 import StyledButton from "../styles/StyledButton";
 import HeaderLogo from "../components/header/HeaderLogo";
 import PostMessageContainer from "../components/message/PostMessageContainer";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const Tag = () => {
@@ -13,15 +13,15 @@ const Tag = () => {
   const navigate = useNavigate();
   const { name } = useParams();
 
+  useEffect(() => {
+    PostData()
+      .getAllPostsByTag(name, 0)
+      .then((posts) => setPosts(posts));
+  }, [name]);
+
   const loadPosts = async (page) => {
     return await PostData().getAllPostsByTag(name, page);
   };
-
-  useEffect(() => {
-    return () => {
-      setPosts([]);
-    };
-  }, [name]);
 
   return (
     <>

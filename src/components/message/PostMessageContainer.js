@@ -12,11 +12,6 @@ const PostMessageContainer = ({
   shouldLoadPostOnScroll,
 }) => {
   useEffect(() => {
-    loadPosts(0).then((posts) => setPosts(posts));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     const scrollEvent = () => {
       if (
         window.innerHeight + window.scrollY >=
