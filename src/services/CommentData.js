@@ -7,9 +7,12 @@ const CommentData = () => {
     window.location.port;
 
   async function getComments(postId) {
-    let response = await fetch("/comments/post/" + postId, {
-      method: "get",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/comments/post/" + postId,
+      {
+        method: "get",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -19,10 +22,13 @@ const CommentData = () => {
   }
 
   async function addComment(formData) {
-    let response = await fetch("/comments/add", {
-      method: "post",
-      body: formData,
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/comments/add",
+      {
+        method: "post",
+        body: formData,
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -31,10 +37,13 @@ const CommentData = () => {
   }
 
   async function editCommentById(formData, id) {
-    let response = await fetch("/comments/edit/" + id, {
-      method: "post",
-      body: formData,
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/comments/edit/" + id,
+      {
+        method: "post",
+        body: formData,
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -42,9 +51,12 @@ const CommentData = () => {
   }
 
   async function deleteCommentById(id) {
-    let response = await fetch("/comments/delete/" + id, {
-      method: "delete",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/comments/delete/" + id,
+      {
+        method: "delete",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -52,9 +64,12 @@ const CommentData = () => {
   }
 
   async function addPoint(id) {
-    let response = await fetch("comments/" + id + "/point/add", {
-      method: "post",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/comments/" + id + "/point/add",
+      {
+        method: "post",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;

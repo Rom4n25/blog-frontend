@@ -7,9 +7,12 @@ const PostData = () => {
     window.location.port;
 
   async function getAllPosts(page) {
-    let response = await fetch("/posts/all/" + page, {
-      method: "get",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/all/" + page,
+      {
+        method: "get",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -19,9 +22,12 @@ const PostData = () => {
   }
 
   async function getAllPostsByUserId(id, page) {
-    let response = await fetch("/posts/user/" + id + "/" + page, {
-      method: "get",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/user/" + id + "/" + page,
+      {
+        method: "get",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -31,10 +37,13 @@ const PostData = () => {
   }
 
   async function addPost(formData) {
-    let response = await fetch("/posts/add", {
-      method: "post",
-      body: formData,
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/add",
+      {
+        method: "post",
+        body: formData,
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -43,10 +52,13 @@ const PostData = () => {
   }
 
   async function editPostById(formData, id) {
-    let response = await fetch("/posts/edit/" + id, {
-      method: "post",
-      body: formData,
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/edit/" + id,
+      {
+        method: "post",
+        body: formData,
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -54,9 +66,12 @@ const PostData = () => {
   }
 
   async function deletePostById(id) {
-    let response = await fetch("/posts/delete/" + id, {
-      method: "delete",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/delete/" + id,
+      {
+        method: "delete",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -64,9 +79,12 @@ const PostData = () => {
   }
 
   async function addPoint(id) {
-    let response = await fetch("/posts/" + id + "/point/add", {
-      method: "post",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/" + id + "/point/add",
+      {
+        method: "post",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -76,9 +94,12 @@ const PostData = () => {
   }
 
   async function findTop10() {
-    let response = await fetch("/posts/top", {
-      method: "get",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/top",
+      {
+        method: "get",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;
@@ -87,9 +108,12 @@ const PostData = () => {
   }
 
   async function getAllPostsByTag(name, page) {
-    let response = await fetch("/posts/tag/" + name + "/" + page, {
-      method: "get",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/posts/tag/" + name + "/" + page,
+      {
+        method: "get",
+      }
+    );
     if (response.status === 401) {
       sessionStorage.removeItem("auth");
       window.location.href = loginPageURL;

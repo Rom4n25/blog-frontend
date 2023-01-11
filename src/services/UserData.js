@@ -2,28 +2,35 @@ import { encode } from "base-64";
 
 const UserData = () => {
   const checkIfLogged = async () => {
-    let response = await fetch("/users/login", {
-      method: "get",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/users/login",
+      {
+        method: "get",
+      }
+    );
     sessionStorage.setItem("auth", response.ok);
     return response;
   };
 
   async function logIn(username, password) {
-    let response = await fetch("/users/login", {
-      method: "post",
-      credentials: "include",
-      headers: {
-        Authorization: "Basic " + encode(username + ":" + password),
-      },
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/users/login",
+      {
+        method: "post",
+
+        credentials: "include",
+        headers: {
+          Authorization: "Basic " + encode(username + ":" + password),
+        },
+      }
+    );
     sessionStorage.setItem("auth", response.ok);
 
     return response;
   }
 
   async function logOut() {
-    await fetch("/users/logout", {
+    await fetch("https://mikroblog.azurewebsites.net/users/logout", {
       method: "get",
       credentials: "include",
     });
@@ -31,7 +38,7 @@ const UserData = () => {
   }
 
   async function create(username, password) {
-    await fetch("/users/add", {
+    await fetch("https://mikroblog.azurewebsites.net/users/add", {
       method: "post",
       headers: {
         Accept: "application/json",
@@ -42,9 +49,12 @@ const UserData = () => {
   }
 
   async function getUserIdFromUsername(username) {
-    let response = await fetch("/users/username/" + username, {
-      method: "get",
-    });
+    let response = await fetch(
+      "https://mikroblog.azurewebsites.net/users/username/" + username,
+      {
+        method: "get",
+      }
+    );
 
     return await response.json();
   }
