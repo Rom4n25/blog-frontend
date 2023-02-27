@@ -8,9 +8,10 @@ const PostData = () => {
 
   async function getAllPosts(page) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/all/" + page,
+      process.env.REACT_APP_API_ENDPOINT + "/posts/all/" + page,
       {
         method: "get",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
@@ -23,9 +24,10 @@ const PostData = () => {
 
   async function getAllPostsByUserId(id, page) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/user/" + id + "/" + page,
+      process.env.REACT_APP_API_ENDPOINT + "/posts/user/" + id + "/" + page,
       {
         method: "get",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
@@ -38,9 +40,10 @@ const PostData = () => {
 
   async function addPost(formData) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/add",
+      process.env.REACT_APP_API_ENDPOINT + "/posts/add",
       {
         method: "post",
+        credentials: "include",
         body: formData,
       }
     );
@@ -53,9 +56,10 @@ const PostData = () => {
 
   async function editPostById(formData, id) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/edit/" + id,
+      process.env.REACT_APP_API_ENDPOINT + "/posts/edit/" + id,
       {
         method: "post",
+        credentials: "include",
         body: formData,
       }
     );
@@ -67,9 +71,10 @@ const PostData = () => {
 
   async function deletePostById(id) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/delete/" + id,
+      process.env.REACT_APP_API_ENDPOINT + "/posts/delete/" + id,
       {
         method: "delete",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
@@ -80,9 +85,10 @@ const PostData = () => {
 
   async function addPoint(id) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/" + id + "/point/add",
+      process.env.REACT_APP_API_ENDPOINT + "/posts/" + id + "/point/add",
       {
         method: "post",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
@@ -95,9 +101,10 @@ const PostData = () => {
 
   async function findTop10() {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/top",
+      process.env.REACT_APP_API_ENDPOINT + "/posts/top",
       {
         method: "get",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
@@ -109,9 +116,10 @@ const PostData = () => {
 
   async function getAllPostsByTag(name, page) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/posts/tag/" + name + "/" + page,
+      process.env.REACT_APP_API_ENDPOINT + "/posts/tag/" + name + "/" + page,
       {
         method: "get",
+        credentials: "include",
       }
     );
     if (response.status === 401) {

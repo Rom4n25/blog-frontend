@@ -34,6 +34,13 @@ const PostMessageContainer = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, shouldLoadPostOnScroll]);
 
+  useEffect(() => {
+    loadPosts(0).then((post) => {
+      setPosts((posts) => posts.concat(post));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <StyledMessagesContainer key={"postContainer"} id="postContainer">
       {posts.map((post) => (

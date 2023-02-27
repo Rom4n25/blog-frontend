@@ -3,9 +3,10 @@ import { encode } from "base-64";
 const UserData = () => {
   const checkIfLogged = async () => {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/users/login",
+      process.env.REACT_APP_API_ENDPOINT + "/users/login",
       {
         method: "get",
+        credentials: "include",
       }
     );
     sessionStorage.setItem("auth", response.ok);
@@ -14,7 +15,7 @@ const UserData = () => {
 
   async function logIn(username, password) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/users/login",
+      process.env.REACT_APP_API_ENDPOINT + "/users/login",
       {
         method: "post",
 
@@ -30,7 +31,7 @@ const UserData = () => {
   }
 
   async function logOut() {
-    await fetch("https://mikroblog.azurewebsites.net/users/logout", {
+    await fetch(process.env.REACT_APP_API_ENDPOINT + "/users/logout", {
       method: "get",
       credentials: "include",
     });
@@ -38,8 +39,9 @@ const UserData = () => {
   }
 
   async function create(username, password) {
-    await fetch("https://mikroblog.azurewebsites.net/users/add", {
+    await fetch(process.env.REACT_APP_API_ENDPOINT + "/users/add", {
       method: "post",
+      credentials: "include",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -50,9 +52,10 @@ const UserData = () => {
 
   async function getUserIdFromUsername(username) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/users/username/" + username,
+      process.env.REACT_APP_API_ENDPOINT + "/users/username/" + username,
       {
         method: "get",
+        credentials: "include",
       }
     );
 

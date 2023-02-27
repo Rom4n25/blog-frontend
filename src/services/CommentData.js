@@ -8,9 +8,10 @@ const CommentData = () => {
 
   async function getComments(postId) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/comments/post/" + postId,
+      process.env.REACT_APP_API_ENDPOINT + "/comments/post/" + postId,
       {
         method: "get",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
@@ -23,9 +24,10 @@ const CommentData = () => {
 
   async function addComment(formData) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/comments/add",
+      process.env.REACT_APP_API_ENDPOINT + "/comments/add",
       {
         method: "post",
+        credentials: "include",
         body: formData,
       }
     );
@@ -38,9 +40,10 @@ const CommentData = () => {
 
   async function editCommentById(formData, id) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/comments/edit/" + id,
+      process.env.REACT_APP_API_ENDPOINT + "/comments/edit/" + id,
       {
         method: "post",
+        credentials: "include",
         body: formData,
       }
     );
@@ -52,9 +55,10 @@ const CommentData = () => {
 
   async function deleteCommentById(id) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/comments/delete/" + id,
+      process.env.REACT_APP_API_ENDPOINT + "/comments/delete/" + id,
       {
         method: "delete",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
@@ -65,9 +69,10 @@ const CommentData = () => {
 
   async function addPoint(id) {
     let response = await fetch(
-      "https://mikroblog.azurewebsites.net/comments/" + id + "/point/add",
+      process.env.REACT_APP_API_ENDPOINT + "/comments/" + id + "/point/add",
       {
         method: "post",
+        credentials: "include",
       }
     );
     if (response.status === 401) {
